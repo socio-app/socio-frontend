@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   box: {
     width: width / 2,
-    height: 51,
+    height: 50,
     borderRadius: width / 2 / 2,
     elevation: 25,
     backgroundColor: "white",
