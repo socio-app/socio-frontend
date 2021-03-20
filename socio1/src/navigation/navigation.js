@@ -13,7 +13,7 @@ import Home from "../screen/Home";
 import MissionList from "../screen/MissionList";
 import UserStats from "../screen/UserStats";
 
-const Navigation = () => {
+export default function Navigation() {
   return (
     <NavigationContainer>
       {/* <Tab.Navigator>
@@ -71,4 +71,3 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
