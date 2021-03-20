@@ -20,7 +20,7 @@ export default class MissionList extends React.Component {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require("../../src/assets/—Pngtree—flat cartoon city building landscape_1017197.jpg")}
+          source={require("../../src/assets/sociobackkground.jpg")}
           style={{ width: "100%", height: "100%" }}
           resizeMode={"stretch"}
         >

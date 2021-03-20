@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import * as Animatable from "react-native-animatable";
 
@@ -37,11 +43,11 @@ export default class ActionSignin extends React.Component {
             />
           </View>
         </View>
-        <View style={styles.button_container}>
+        <TouchableOpacity style={styles.button_container}>
           <View style={styles.button}>
             <Text style={styles.text}>Sign in</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </Animatable.View>
     );
   }
