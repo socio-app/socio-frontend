@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   StyleSheet,
@@ -13,15 +13,15 @@ import {
   Platform,
 } from 'react-native'
 
-import ActionSignin from "../assets/actionSignIn";
-import ActionSignup from "../assets/actionSignUp";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useSelector } from "react-redux";
-import { useFocusEffect } from '@react-navigation/native';
+import ActionSignin from '../assets/actionSignIn'
+import ActionSignup from '../assets/actionSignUp'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { useSelector } from 'react-redux'
+import { useFocusEffect } from '@react-navigation/native'
 
 export default function MainPage(props) {
   const [enableButton, setEnableButton] = useState(false)
-  const access_token = useSelector(state => state.user.access_token)
+  const access_token = useSelector((state) => state.user.access_token)
   console.log(access_token)
 
   // useEffect(() => {
@@ -48,7 +48,7 @@ export default function MainPage(props) {
       //   // Useful for cleanup functions
       // };
     }, [access_token])
-  );
+  )
 
   const handleSignIn = () => {
     setEnableButton(true)
@@ -58,7 +58,7 @@ export default function MainPage(props) {
     setEnableButton(false)
   }
 
-  const handleChangePage = value => {
+  const handleChangePage = (value) => {
     props.navigation.navigate(value)
   }
 
@@ -97,17 +97,13 @@ export default function MainPage(props) {
                 style={[
                   styles.item,
                   {
-                    backgroundColor: enableButton ? "orange" : "green",
+                    backgroundColor: enableButton ? 'orange' : 'green',
                     borderTopLeftRadius: width / 2 / 2,
                     borderBottomLeftRadius: width / 2 / 2,
                   },
                 ]}
               >
-                <FontAwesome
-                  name="sign-in"
-                  size={30}
-                  color={"white"}
-                />
+                <FontAwesome name="sign-in" size={30} color={'white'} />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleSignUp}
@@ -115,7 +111,7 @@ export default function MainPage(props) {
                 style={[
                   styles.item,
                   {
-                    backgroundColor: enableButton ? "green" : "orange",
+                    backgroundColor: enableButton ? 'green' : 'orange',
                     borderTopRightRadius: width / 2 / 2,
                     borderBottomRightRadius: width / 2 / 2,
                   },
@@ -124,13 +120,17 @@ export default function MainPage(props) {
                 <FontAwesome
                   name="registered"
                   size={30}
-                  color={enableButton ? "white" : "black"}
+                  color={enableButton ? 'white' : 'black'}
                 />
               </TouchableOpacity>
             </View>
-            {
-              enableButton ? <ActionSignin handleChangePage={(value) => handleChangePage(value)} /> : <ActionSignup />
-            }
+            {enableButton ? (
+              <ActionSignin
+                handleChangePage={(value) => handleChangePage(value)}
+              />
+            ) : (
+              <ActionSignup />
+            )}
           </View>
         </ImageBackground>
       </View>

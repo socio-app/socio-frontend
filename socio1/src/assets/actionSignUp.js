@@ -56,10 +56,11 @@ export default function ActionSignup() {
             />
           </View>
         </View>
-        <TouchableOpacity style={styles.button_container}>
-          <View style={styles.button}>
-            <Text style={styles.text}>Sign Up</Text>
-          </View>
+        <TouchableOpacity
+          onPress={() => console.log('Handle sign up!')}
+          style={styles.button}
+        >
+          <Text style={styles.text}>Sign up</Text>
         </TouchableOpacity>
       </Animatable.View>
     </View>
@@ -100,21 +101,19 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 
-  button_container: {
-    flex: 1,
-    alignItems: 'center',
-  },
   button: {
-    width: 100,
-    height: 40,
-    backgroundColor: 'gray',
+    marginTop: 15,
+    alignItems: 'center',
+    backgroundColor: 'green',
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 7,
-    marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
+    height: 44,
   },
+
   text: {
     color: 'white',
     fontWeight: 'bold',

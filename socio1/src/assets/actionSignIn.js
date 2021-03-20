@@ -73,13 +73,8 @@ export default function ActionSignin(props) {
             />
           </View>
         </View>
-        <TouchableOpacity
-          onPress={() => console.log('PERES')}
-          style={styles.button_container}
-        >
-          <View style={styles.button}>
-            <Text style={styles.text}>Sign in</Text>
-          </View>
+        <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+          <Text style={styles.text}>Sign in</Text>
         </TouchableOpacity>
       </Animatable.View>
     </View>
@@ -122,24 +117,19 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 
-  button_container: {
-    flex: 1,
-    alignItems: 'center',
-    height: 'auto',
-    backgroundColor: 'red',
-    width: 100,
-    height: 40,
-  },
-
   button: {
+    marginTop: 15,
+    alignItems: 'center',
     backgroundColor: 'green',
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 7,
-    marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
+    height: 44,
   },
+
   text: {
     color: 'white',
     fontWeight: 'bold',
