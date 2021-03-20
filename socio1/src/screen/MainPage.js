@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   StyleSheet,
   Text,
@@ -15,10 +16,39 @@ import {
 import ActionSignin from "../assets/actionSignIn";
 import ActionSignup from "../assets/actionSignUp";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { useSelector } from "react-redux";
+import { useFocusEffect } from '@react-navigation/native';
 
-export default function MainPage() {
+export default function MainPage(props) {
   const [enableButton, setEnableButton] = useState(false)
-  
+  const access_token = useSelector(state => state.user.access_token)
+
+  // useEffect(() => {
+  //   async function fetchAccessToken() {
+  //     const access_token_async = await AsyncStorage.getItem('access_token')
+  //     if (access_token_async) {
+  //       console.log('ada access token bro')
+  //     } else {
+  //       console.log('gak ada access token bro')
+  //     }
+  //   }
+  //   fetchAccessToken()
+  // }, [])
+
+  useFocusEffect(
+    useCallback(() => {
+      // Do something when the screen is focused
+      if (access_token) {
+        props.navigation.navigate('Home')
+      }
+
+      // return () => {
+      //   // Do something when the screen is unfocused
+      //   // Useful for cleanup functions
+      // };
+    }, [])
+  );
+
   const handleSignIn = () => {
     setEnableButton(true)
   }
@@ -27,75 +57,79 @@ export default function MainPage() {
     setEnableButton(false)
   }
 
-  return(
+  const handleChangePage = value => {
+    props.navigation.navigate(value)
+  }
+
+  return (
     <View style={styles.container}>
-        <StatusBar hidden={true} />
-        <View style={styles.header}>
-          <ImageBackground
-            source={require("../../src/assets/sociobackkground.jpg")}
-            style={{ width: "100%", height: "100%" }}
-            resizeMode={"stretch"}
-          >
-            <View style={styles.logo}>
-              <Image
-                source={require("../../src/assets/sociologo1.png")}
-                style={{
-                  width: "80%",
-                  height: "45%",
+      <StatusBar hidden={true} />
+      <View style={styles.header}>
+        <ImageBackground
+          source={require("../../src/assets/sociobackkground.jpg")}
+          style={{ width: "100%", height: "100%" }}
+          resizeMode={"stretch"}
+        >
+          <View style={styles.logo}>
+            <Image
+              source={require("../../src/assets/sociologo1.png")}
+              style={{
+                width: "80%",
+                height: "45%",
 
-                  justifyContent: "center",
-                  marginLeft: "11%",
-                }}
-                resizeMode={"stretch"}
-              />
-            </View>
+                justifyContent: "center",
+                marginLeft: "11%",
+              }}
+              resizeMode={"stretch"}
+            />
+          </View>
 
-            <View style={styles.tabbar}>
-              <View style={styles.box}>
-                <TouchableOpacity
-                  onPress={handleSignIn}
-                  // onPress={() => this.tab("SignIn")}
-                  style={[
-                    styles.item,
-                    {
-                      backgroundColor: enableButton ? "orange" : "green",
-                      borderTopLeftRadius: width / 2 / 2,
-                      borderBottomLeftRadius: width / 2 / 2,
-                    },
-                  ]}
-                >
-                  <FontAwesome
-                    name="sign-in"
-                    size={30}
-                    color={"white"}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={handleSignUp}
-                  // onPress={() => this.tab("SignUp")}
-                  style={[
-                    styles.item,
-                    {
-                      backgroundColor: enableButton ? "green" : "orange",
-                      borderTopRightRadius: width / 2 / 2,
-                      borderBottomRightRadius: width / 2 / 2,
-                    },
-                  ]}
-                >
-                  <FontAwesome
-                    name="registered"
-                    size={30}
-                    color={ enableButton ? "white" : "black" }
-                  />
-                </TouchableOpacity>
-              </View>
-              { 
-                enableButton ? <ActionSignin /> : <ActionSignup />
-              }
+          <View style={styles.tabbar}>
+            <View style={styles.box}>
+              <TouchableOpacity
+                onPress={handleSignIn}
+                // onPress={() => this.tab("SignIn")}
+                style={[
+                  styles.item,
+                  {
+                    backgroundColor: enableButton ? "orange" : "green",
+                    borderTopLeftRadius: width / 2 / 2,
+                    borderBottomLeftRadius: width / 2 / 2,
+                  },
+                ]}
+              >
+                <FontAwesome
+                  name="sign-in"
+                  size={30}
+                  color={"white"}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleSignUp}
+                // onPress={() => this.tab("SignUp")}
+                style={[
+                  styles.item,
+                  {
+                    backgroundColor: enableButton ? "green" : "orange",
+                    borderTopRightRadius: width / 2 / 2,
+                    borderBottomRightRadius: width / 2 / 2,
+                  },
+                ]}
+              >
+                <FontAwesome
+                  name="registered"
+                  size={30}
+                  color={enableButton ? "white" : "black"}
+                />
+              </TouchableOpacity>
             </View>
-          </ImageBackground>
-        </View>
+            {
+              enableButton ? <ActionSignin handleChangePage={(value) => handleChangePage(value)} /> : <ActionSignup />
+            }
+          </View>
+        </ImageBackground>
       </View>
+    </View>
   )
 }
 

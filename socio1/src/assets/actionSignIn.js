@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../redux/actions/login.js'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   StyleSheet,
   Text,
@@ -9,7 +12,27 @@ import {
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import * as Animatable from "react-native-animatable";
 
-export default function ActionSignin() {
+export default function ActionSignin(props) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const access_token = useSelector(state => state.user.access_token)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (access_token) {
+      console.log('pindah')
+      props.handleChangePage('Home')
+    }
+  }, [access_token])
+
+
+  const handleSubmit = async () => {
+    dispatch(login({
+      email, password
+    }))
+  }
+
   return (
     <View style={{ alignItems: "center" }}>
       <Animatable.View animation="bounceInLeft" style={styles.container}>
@@ -21,6 +44,8 @@ export default function ActionSignin() {
             <TextInput
               placeholder="  Your email ...."
               style={styles.TextInput}
+              value={email}
+              onChangeText={setEmail}
             />
           </View>
         </View>
@@ -39,14 +64,16 @@ export default function ActionSignin() {
             <TextInput
               placeholder="  Your password ...."
               style={styles.TextInput}
+              value={password}
+              onChangeText={setPassword}
             />
           </View>
         </View>
-        <TouchableOpacity style={styles.button_container}>
+        <TouchableOpacity onPress={handleSubmit} style={styles.button_container}>
           <View style={styles.button}>
             <Text style={styles.text}>Sign in</Text>
           </View>
-        </TouchableOpacity>     
+        </TouchableOpacity>
       </Animatable.View>
     </View>
   );

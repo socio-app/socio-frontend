@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import { useSelector } from 'react-redux'
 import {
   StyleSheet,
   Text,
@@ -13,10 +14,10 @@ import {
 } from "react-native";
 
 import Headers from "../Components/HeaderComponents";
-import { Card, Title, Paragraph, Button } from "react-native-paper";
 import Boxes from "../Components/Boxes";
 
 export default function Home() {
+  const user = useSelector(state => state.user.user)
   return (
     <View style={styles.container}>
       {/* <Text>HAII INI DI HOME PAGE</Text> */}
