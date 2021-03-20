@@ -22,7 +22,7 @@ export default class Home extends React.Component {
       <View style={styles.container}>
         {/* <Text>HAII INI DI HOME PAGE</Text> */}
         <ImageBackground
-          source={require("../../src/assets/—Pngtree—flat cartoon city building landscape_1017197.jpg")}
+          source={require("../../src/assets/sociobackkground.jpg")}
           style={{ width: "100%", height: "100%" }}
           resizeMode={"stretch"}
         >
