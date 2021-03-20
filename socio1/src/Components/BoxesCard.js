@@ -1,72 +1,34 @@
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
-import { Button, Card, Title, Paragraph, Checkbox } from "react-native-paper";
-import * as Animatable from "react-native-animatable";
-export default class Boxes extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Title>List Mission</Title>
-
-        <View style={styles.box}>
-          <ScrollView style={styles.scrollView}>
-            <Animatable.View animation="bounceInLeft" style={styles.inner}>
-              <Card style={styles.card}>
-                <Card.Content style={styles.card1}>
-                  <Checkbox.Item
-                    label="Nelpon mantan katakan maaf"
-                    status="unchecked"
-                  />
-                </Card.Content>
-              </Card>
-              <Card style={styles.card}>
-                <Card.Content style={styles.card1}>
-                  <Checkbox.Item
-                    label="bersedekah kepada siapapun hari ini "
-                    status="unchecked"
-                  />
-                </Card.Content>
-              </Card>
-              <Card style={styles.card}>
-                <Card.Content style={styles.card1}>
-                  <Checkbox.Item label="Nelpon mantan" status="unchecked" />
-                </Card.Content>
-              </Card>
-              <Card style={styles.card}>
-                <Card.Content style={styles.card1}>
-                  <Checkbox.Item label="Nelpon mantan" status="unchecked" />
-                </Card.Content>
-              </Card>
-              <Card style={styles.card}>
-                <Card.Content style={styles.card1}>
-                  <Checkbox.Item label="Nelpon mantan" status="unchecked" />
-                </Card.Content>
-              </Card>
-            </Animatable.View>
-          </ScrollView>
-
-          <Button
-            style={styles.button}
-            mode="contained"
-            onPress={() => console.log("Pressed")}
-          >
-            confirm
-          </Button>
-        </View>
-      </View>
-    );
-  }
+import React, { useState } from "react";
+import { StyleSheet, Text, View, SafeAreaView, FlatList } from "react-native";
+import { Button, Title, Paragraph, Checkbox } from "react-native-paper";
+import Card from './Card.js'
+const Boxes = () => {
+  const [missions, setMissions] = useState([
+    'mission 1', 'mission2', 'mission 3', 'mission 30', 'mission 4',
+    'mission 5', 'mission 6'
+  ])
+  return (
+    <View style={styles.container}>
+      <Title style={{ marginTop: 20 }}>List Mission</Title>
+      <FlatList
+        data={missions}
+        renderItem={(data) => (
+          <View style={{ width: '100%', alignItems: 'center' }}>
+            <Card />
+          </View>
+        )}
+        keyExtractor={item => item}
+        style={{ width: '80%' }}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "85%",
-    padding: 5,
-    marginTop: "10%",
-    flexDirection: "row",
-    flexWrap: "wrap",
     justifyContent: "center",
+    alignItems: 'center',
+    flex: 1
   },
   box: {
     width: "100%",
@@ -94,3 +56,5 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
 });
+
+export default Boxes
