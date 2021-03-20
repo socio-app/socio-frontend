@@ -1,27 +1,24 @@
-import React from "react";
+import React from 'react'
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-} from "react-native";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import * as Animatable from "react-native-animatable";
+} from 'react-native'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import * as Animatable from 'react-native-animatable'
 
 export default function ActionSignin() {
   return (
-    <View style={{ alignItems: "center" }}>
+    <View style={{ alignItems: 'center' }}>
       <Animatable.View animation="bounceInLeft" style={styles.container}>
         <View style={styles.section}>
           <View style={styles.icon}>
             <MaterialIcons name="email" color="gray" size={20} />
           </View>
           <View style={styles.input}>
-            <TextInput
-              placeholder="  Your email ...."
-              style={styles.TextInput}
-            />
+            <TextInput placeholder="Your email ...." style={styles.TextInput} />
           </View>
         </View>
         <View
@@ -37,8 +34,9 @@ export default function ActionSignin() {
           </View>
           <View style={styles.input}>
             <TextInput
-              placeholder="  Your password ...."
+              placeholder="Your password ...."
               style={styles.TextInput}
+              secureTextEntry={true}
             />
           </View>
         </View>
@@ -46,63 +44,66 @@ export default function ActionSignin() {
           <View style={styles.button}>
             <Text style={styles.text}>Sign in</Text>
           </View>
-        </TouchableOpacity>     
+        </TouchableOpacity>
       </Animatable.View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: "20%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '10%',
     paddingHorizontal: 20,
-    width: "90%"
+    width: '90%',
   },
   section: {
-    flexDirection: "row",
-    backgroundColor: "white",
-    width: "100%",
-    paddingVertical: 15,
-    paddingHorizontal: 8,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    width: '100%',
     borderRadius: 7,
     opacity: 0.9,
-    height: 50
+    position: 'relative',
   },
   icon: {
     borderRightWidth: 1,
-    borderRightColor: "gray",
+    borderRightColor: 'gray',
     paddingRight: 10,
+    position: 'absolute',
+    top: '50%',
+    transform: [{ translateY: -10 }],
+    left: 10,
   },
-  input: {
-    flex: 1,
-    width: "100%"
-  },
-  textInput: {
+
+  input: {},
+
+  TextInput: {
     borderRadius: 7,
-    paddingLeft: 10,
-    width: "100%"
+    paddingLeft: 50,
+    paddingVertical: 15,
+    paddingRight: 8,
+    width: '100%',
   },
 
   button_container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   button: {
     width: 100,
     height: 40,
-    backgroundColor: "green",
+    backgroundColor: 'green',
     borderWidth: 1,
-    borderColor: "white",
+    borderColor: 'white',
     borderRadius: 7,
     marginTop: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
-    color: "white",
-    fontWeight: "bold",
+    color: 'white',
+    fontWeight: 'bold',
     fontSize: 18,
   },
-});
+})
