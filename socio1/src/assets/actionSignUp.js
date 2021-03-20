@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react'
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-} from "react-native";
-import { Button } from "react-native-paper";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import * as Animatable from "react-native-animatable";
+} from 'react-native'
+import { Button } from 'react-native-paper'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import * as Animatable from 'react-native-animatable'
 
 export default class ActionSignup extends React.Component {
   render() {
@@ -50,23 +50,22 @@ export default class ActionSignup extends React.Component {
           </View>
         </TouchableOpacity>
       </Animatable.View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: "20%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '20%',
 
     paddingHorizontal: 30,
   },
   section: {
-    flexDirection: "row",
-    backgroundColor: "white",
-    width: "100%",
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    width: '100%',
     paddingVertical: 15,
     paddingHorizontal: 8,
     borderRadius: 7,
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     borderRightWidth: 1,
-    borderRightColor: "gray",
+    borderRightColor: 'gray',
     paddingRight: 10,
   },
   input: {
@@ -87,22 +86,22 @@ const styles = StyleSheet.create({
 
   button_container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   button: {
     width: 100,
     height: 40,
-    backgroundColor: "green",
+    backgroundColor: 'green',
     borderWidth: 1,
-    borderColor: "white",
+    borderColor: 'white',
     borderRadius: 7,
     marginTop: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
-    color: "white",
-    fontWeight: "bold",
+    color: 'white',
+    fontWeight: 'bold',
     fontSize: 18,
   },
-});
+})

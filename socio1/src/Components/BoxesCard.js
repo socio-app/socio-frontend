@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
-import { Button, Card, Title, Paragraph, Checkbox } from "react-native-paper";
-import * as Animatable from "react-native-animatable";
+import React from 'react'
+import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native'
+import { Button, Card, Title, Paragraph, Checkbox } from 'react-native-paper'
+import * as Animatable from 'react-native-animatable'
 export default class Boxes extends React.Component {
   render() {
     return (
@@ -48,49 +48,49 @@ export default class Boxes extends React.Component {
           <Button
             style={styles.button}
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            onPress={() => console.log('Pressed')}
           >
             confirm
           </Button>
         </View>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "85%",
+    width: '100%',
+    height: '85%',
     padding: 5,
-    marginTop: "10%",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
+    marginTop: '10%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   box: {
-    width: "100%",
-    height: "80%",
+    width: '100%',
+    height: '80%',
     padding: 5,
   },
   inner: {
     flex: 1,
-    backgroundColor: "tranparent",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: 'transparent',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   card: {
-    width: "80%",
-    height: "20%",
+    width: '80%',
+    height: '20%',
     marginTop: 5,
   },
   card1: {
     marginBottom: 5,
   },
   button: {
-    backgroundColor: "blue",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: 'blue',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 50,
   },
-});
+})

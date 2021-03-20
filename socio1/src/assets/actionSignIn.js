@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-} from "react-native";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import * as Animatable from "react-native-animatable";
+} from 'react-native'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import * as Animatable from 'react-native-animatable'
 
 export default class ActionSignin extends React.Component {
   render() {
@@ -37,48 +37,51 @@ export default class ActionSignin extends React.Component {
           </View>
           <View style={styles.input}>
             <TextInput
+              underlineColorAndroid="transparent"
               secureTextEntry
               placeholder="  Your Password ...."
-              style={styles.TextInput}
+              // style={styles.TextInput}
             />
           </View>
         </View>
+
         <TouchableOpacity style={styles.button_container}>
           <View style={styles.button}>
             <Text style={styles.text}>Sign in</Text>
           </View>
         </TouchableOpacity>
       </Animatable.View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: "20%",
-
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '20%',
     paddingHorizontal: 20,
   },
   section: {
-    flexDirection: "row",
-    backgroundColor: "white",
-    width: "100%",
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    width: '100%',
     paddingVertical: 15,
     paddingHorizontal: 8,
     borderRadius: 7,
     opacity: 0.9,
+    height: 50,
   },
   icon: {
     borderRightWidth: 1,
-    borderRightColor: "gray",
+    borderRightColor: 'gray',
     paddingRight: 10,
   },
   input: {
     flex: 1,
+    height: 50,
   },
+
   textInput: {
     borderRadius: 7,
     paddingLeft: 10,
@@ -86,22 +89,22 @@ const styles = StyleSheet.create({
 
   button_container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   button: {
     width: 100,
     height: 40,
-    backgroundColor: "green",
+    backgroundColor: 'green',
     borderWidth: 1,
-    borderColor: "white",
+    borderColor: 'white',
     borderRadius: 7,
     marginTop: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
-    color: "white",
-    fontWeight: "bold",
+    color: 'white',
+    fontWeight: 'bold',
     fontSize: 18,
   },
-});
+})
