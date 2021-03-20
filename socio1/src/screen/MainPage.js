@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   StyleSheet,
@@ -22,6 +22,7 @@ import { useFocusEffect } from '@react-navigation/native';
 export default function MainPage(props) {
   const [enableButton, setEnableButton] = useState(false)
   const access_token = useSelector(state => state.user.access_token)
+  console.log(access_token)
 
   // useEffect(() => {
   //   async function fetchAccessToken() {
@@ -46,7 +47,7 @@ export default function MainPage(props) {
       //   // Do something when the screen is unfocused
       //   // Useful for cleanup functions
       // };
-    }, [])
+    }, [access_token])
   );
 
   const handleSignIn = () => {
