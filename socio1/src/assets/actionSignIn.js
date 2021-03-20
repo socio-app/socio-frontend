@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/actions/login.js'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -15,7 +15,7 @@ import * as Animatable from 'react-native-animatable'
 export default function ActionSignin(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const access_token = useSelector(state => state.user.access_token)
+  const access_token = useSelector((state) => state.user.access_token)
 
   const dispatch = useDispatch()
 
@@ -26,11 +26,14 @@ export default function ActionSignin(props) {
     }
   }, [access_token])
 
-
-  const handleSubmit = async () => {
-    dispatch(login({
-      email, password
-    }))
+  const handleSubmit = () => {
+    console.log('kelik')
+    dispatch(
+      login({
+        email,
+        password,
+      })
+    )
   }
 
   return (
@@ -70,7 +73,10 @@ export default function ActionSignin(props) {
             />
           </View>
         </View>
-        <TouchableOpacity onPress={handleSubmit} style={styles.button_container}>
+        <TouchableOpacity
+          onPress={() => console.log('PERES')}
+          style={styles.button_container}
+        >
           <View style={styles.button}>
             <Text style={styles.text}>Sign in</Text>
           </View>
@@ -119,10 +125,13 @@ const styles = StyleSheet.create({
   button_container: {
     flex: 1,
     alignItems: 'center',
-  },
-  button: {
+    height: 'auto',
+    backgroundColor: 'red',
     width: 100,
     height: 40,
+  },
+
+  button: {
     backgroundColor: 'green',
     borderWidth: 1,
     borderColor: 'white',
