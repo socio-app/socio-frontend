@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/actions/login.js'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-=======
-import React from 'react'
->>>>>>> origin/development
 import {
   StyleSheet,
   Text,
@@ -45,16 +41,12 @@ export default function ActionSignin(props) {
             <MaterialIcons name="email" color="gray" size={20} />
           </View>
           <View style={styles.input}>
-<<<<<<< HEAD
             <TextInput
-              placeholder="  Your email ...."
+              placeholder="Your email ...."
               style={styles.TextInput}
               value={email}
               onChangeText={setEmail}
             />
-=======
-            <TextInput placeholder="Your email ...." style={styles.TextInput} />
->>>>>>> origin/development
           </View>
         </View>
         <View
@@ -72,12 +64,9 @@ export default function ActionSignin(props) {
             <TextInput
               placeholder="Your password ...."
               style={styles.TextInput}
-<<<<<<< HEAD
               value={password}
               onChangeText={setPassword}
-=======
               secureTextEntry={true}
->>>>>>> origin/development
             />
           </View>
         </View>
