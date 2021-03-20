@@ -12,7 +12,8 @@ import * as Animatable from "react-native-animatable";
 export default class ActionSignin extends React.Component {
   render() {
     return (
-      <Animatable.View animation="bounceInLeft" style={styles.container}>
+      <View>
+        <Animatable.View animation="bounceInLeft" style={styles.container}>
         <View style={styles.section}>
           <View style={styles.icon}>
             <MaterialIcons name="email" color="gray" size={20} />
@@ -37,8 +38,7 @@ export default class ActionSignin extends React.Component {
           </View>
           <View style={styles.input}>
             <TextInput
-              secureTextEntry
-              placeholder="  Your Password ...."
+              placeholder="  Your password ...."
               style={styles.TextInput}
             />
           </View>
@@ -47,15 +47,15 @@ export default class ActionSignin extends React.Component {
           <View style={styles.button}>
             <Text style={styles.text}>Sign in</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity>     
       </Animatable.View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: "20%",
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 7,
     opacity: 0.9,
+    height: 50
   },
   icon: {
     borderRightWidth: 1,
@@ -78,10 +79,12 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    width: "100%"
   },
   textInput: {
     borderRadius: 7,
     paddingLeft: 10,
+    width: "100%"
   },
 
   button_container: {
