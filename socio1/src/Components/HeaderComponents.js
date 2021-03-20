@@ -30,28 +30,26 @@ const Progress = ({ step, steps, height }) => {
   );
 };
 
-export default class Header extends React.Component {
-  render() {
-    return (
-      <View container style={styles.header}>
-        <View style={styles.avatar}>
-          <Avatar.Image size={42} label="Avatar" />
-        </View>
-        <View style={styles.progressBar}>
-          {/* <Avatar.Text size={45} label="ProgressBar" /> */}
-          <Text style={styles.textLevel}>Exp</Text>
-          <ProgressBar
-            progress={0.8}
-            color={Colors.red800}
-            style={styles.progressbarinner}
-          />
-        </View>
-        <View style={styles.level}>
-          <Avatar.Text size={42} label="Level" />
-        </View>
+export default function Header() {
+  return (
+    <View container style={styles.header}>
+      <View style={styles.avatar}>
+        <Avatar.Image size={42} label="Avatar" />
       </View>
-    );
-  }
+      <View style={styles.progressBar}>
+        {/* <Avatar.Text size={45} label="ProgressBar" /> */}
+        <Text style={styles.textLevel}>Exp</Text>
+        <ProgressBar
+          progress={0.8}
+          color={Colors.red800}
+          style={styles.progressbarinner}
+        />
+      </View>
+      <View style={styles.level}>
+        <Avatar.Text size={42} label="Level" />
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

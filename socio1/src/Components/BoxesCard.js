@@ -2,60 +2,59 @@ import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 import { Button, Card, Title, Paragraph, Checkbox } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
-export default class Boxes extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Title>List Mission</Title>
 
-        <View style={styles.box}>
-          <ScrollView style={styles.scrollView}>
-            <Animatable.View animation="bounceInLeft" style={styles.inner}>
-              <Card style={styles.card}>
-                <Card.Content style={styles.card1}>
-                  <Checkbox.Item
-                    label="Nelpon mantan katakan maaf"
-                    status="unchecked"
-                  />
-                </Card.Content>
-              </Card>
-              <Card style={styles.card}>
-                <Card.Content style={styles.card1}>
-                  <Checkbox.Item
-                    label="bersedekah kepada siapapun hari ini "
-                    status="unchecked"
-                  />
-                </Card.Content>
-              </Card>
-              <Card style={styles.card}>
-                <Card.Content style={styles.card1}>
-                  <Checkbox.Item label="Nelpon mantan" status="unchecked" />
-                </Card.Content>
-              </Card>
-              <Card style={styles.card}>
-                <Card.Content style={styles.card1}>
-                  <Checkbox.Item label="Nelpon mantan" status="unchecked" />
-                </Card.Content>
-              </Card>
-              <Card style={styles.card}>
-                <Card.Content style={styles.card1}>
-                  <Checkbox.Item label="Nelpon mantan" status="unchecked" />
-                </Card.Content>
-              </Card>
-            </Animatable.View>
-          </ScrollView>
+export default function Boxes() {
+  return (
+    <View style={styles.container}>
+      <Title>List Mission</Title>
 
-          <Button
-            style={styles.button}
-            mode="contained"
-            onPress={() => console.log("Pressed")}
-          >
-            confirm
-          </Button>
-        </View>
+      <View style={styles.box}>
+        <ScrollView style={styles.scrollView}>
+          <Animatable.View animation="bounceInLeft" style={styles.inner}>
+            <Card style={styles.card}>
+              <Card.Content style={styles.card1}>
+                <Checkbox.Item
+                  label="Nelpon mantan katakan maaf"
+                  status="unchecked"
+                />
+              </Card.Content>
+            </Card>
+            <Card style={styles.card}>
+              <Card.Content style={styles.card1}>
+                <Checkbox.Item
+                  label="bersedekah kepada siapapun hari ini "
+                  status="unchecked"
+                />
+              </Card.Content>
+            </Card>
+            <Card style={styles.card}>
+              <Card.Content style={styles.card1}>
+                <Checkbox.Item label="Nelpon mantan" status="unchecked" />
+              </Card.Content>
+            </Card>
+            <Card style={styles.card}>
+              <Card.Content style={styles.card1}>
+                <Checkbox.Item label="Nelpon mantan" status="unchecked" />
+              </Card.Content>
+            </Card>
+            <Card style={styles.card}>
+              <Card.Content style={styles.card1}>
+                <Checkbox.Item label="Nelpon mantan" status="unchecked" />
+              </Card.Content>
+            </Card>
+          </Animatable.View>
+        </ScrollView>
+
+        <Button
+          style={styles.button}
+          mode="contained"
+          onPress={() => console.log("Pressed")}
+        >
+          confirm
+        </Button>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
