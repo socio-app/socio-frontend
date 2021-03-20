@@ -9,50 +9,45 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as Animatable from 'react-native-animatable'
 
-export default class ActionSignin extends React.Component {
-  render() {
-    return (
-      <View style={{ alignItems: 'center' }}>
-        <Animatable.View animation="bounceInLeft" style={styles.container}>
-          <View style={styles.section}>
-            <View style={styles.icon}>
-              <MaterialIcons name="email" color="gray" size={20} />
-            </View>
-            <View style={styles.input}>
-              <TextInput
-                placeholder="Your email ...."
-                style={styles.TextInput}
-              />
-            </View>
+export default function ActionSignin() {
+  return (
+    <View style={{ alignItems: 'center' }}>
+      <Animatable.View animation="bounceInLeft" style={styles.container}>
+        <View style={styles.section}>
+          <View style={styles.icon}>
+            <MaterialIcons name="email" color="gray" size={20} />
           </View>
-          <View
-            style={[
-              styles.section,
-              {
-                marginTop: 15,
-              },
-            ]}
-          >
-            <View style={styles.icon}>
-              <MaterialIcons name="lock" color="gray" size={20} />
-            </View>
-            <View style={styles.input}>
-              <TextInput
-                placeholder="Your password ...."
-                style={styles.TextInput}
-                secureTextEntry={true}
-              />
-            </View>
+          <View style={styles.input}>
+            <TextInput placeholder="Your email ...." style={styles.TextInput} />
           </View>
-          <TouchableOpacity style={styles.button_container}>
-            <View style={styles.button}>
-              <Text style={styles.text}>Sign in</Text>
-            </View>
-          </TouchableOpacity>
-        </Animatable.View>
-      </View>
-    )
-  }
+        </View>
+        <View
+          style={[
+            styles.section,
+            {
+              marginTop: 15,
+            },
+          ]}
+        >
+          <View style={styles.icon}>
+            <MaterialIcons name="lock" color="gray" size={20} />
+          </View>
+          <View style={styles.input}>
+            <TextInput
+              placeholder="Your password ...."
+              style={styles.TextInput}
+              secureTextEntry={true}
+            />
+          </View>
+        </View>
+        <TouchableOpacity style={styles.button_container}>
+          <View style={styles.button}>
+            <Text style={styles.text}>Sign in</Text>
+          </View>
+        </TouchableOpacity>
+      </Animatable.View>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

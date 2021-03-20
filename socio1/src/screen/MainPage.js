@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   StyleSheet,
   Text,
@@ -11,121 +11,95 @@ import {
   PixelRatio,
   Platform,
 } from 'react-native'
+
 import ActionSignin from '../assets/actionSignIn'
 import ActionSignup from '../assets/actionSignUp'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import * as Animatable from 'react-native-animatable'
 
-export default class MainPage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      enable: true,
-    }
+export default function MainPage() {
+  const [enableButton, setEnableButton] = useState(false)
+
+  const handleSignIn = () => {
+    setEnableButton(true)
   }
 
-  tab(value) {
-    if (value == 'SignIn') {
-      this.setState({
-        enable: true,
-      })
-    } else {
-      this.setState({
-        enable: false,
-      })
-    }
+  const handleSignUp = () => {
+    setEnableButton(false)
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <StatusBar hidden={true} />
-        <View style={styles.header}>
-          <ImageBackground
-            source={require('../../src/assets/sociobackkground.jpg')}
-            style={{
-              flex: 1,
-              width: '100%',
-              height: '100%',
-              alignItems: 'center',
-            }}
-            resizeMode={'stretch'}
-          >
-            <View style={styles.logo}>
-              <Image
-                source={require('../../src/assets/sociologo1.png')}
-                style={{
-                  width: '100%',
-                  height: '100%',
+  return (
+    <View style={styles.container}>
+      <StatusBar hidden={true} />
+      <View style={styles.header}>
+        <ImageBackground
+          source={require('../../src/assets/sociobackkground.jpg')}
+          style={{
+            flex: 1,
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+          }}
+          resizeMode={'stretch'}
+        >
+          <View style={styles.logo}>
+            <Image
+              source={require('../../src/assets/sociologo1.png')}
+              style={{
+                width: '100%',
+                height: '100%',
 
-                  // marginLeft: '11%',
-                }}
-                resizeMode={'stretch'}
-              />
-            </View>
+                // marginLeft: '11%',
+              }}
+              resizeMode={'stretch'}
+            />
+          </View>
 
-            <View style={styles.tabbar}>
-              <View style={styles.box}>
-                <TouchableOpacity
-                  onPress={() => this.tab('SignIn')}
-                  style={[
-                    styles.item,
-                    {
-                      backgroundColor: this.state.enable ? 'orange' : 'green',
-                      borderTopLeftRadius: width / 2 / 2,
-                      borderBottomLeftRadius: width / 2 / 2,
-                    },
-                  ]}
-                >
-                  <FontAwesome
-                    name="sign-in"
-                    size={30}
-                    color={this.state.enable ? 'black' : 'white'}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => this.tab('SignUp')}
-                  style={[
-                    styles.item,
-                    {
-                      backgroundColor: this.state.enable ? 'green' : 'orange',
-                      borderTopRightRadius: width / 2 / 2,
-                      borderBottomRightRadius: width / 2 / 2,
-                    },
-                  ]}
-                >
-                  <FontAwesome
-                    name="registered"
-                    size={30}
-                    color={this.state.enable ? 'white' : 'black'}
-                  />
-                </TouchableOpacity>
-              </View>
-              {this.state.enable ? <ActionSignin /> : <ActionSignup />}
+          <View style={styles.tabbar}>
+            <View style={styles.box}>
+              <TouchableOpacity
+                onPress={handleSignIn}
+                // onPress={() => this.tab("SignIn")}
+                style={[
+                  styles.item,
+                  {
+                    backgroundColor: enableButton ? 'orange' : 'green',
+                    borderTopLeftRadius: width / 2 / 2,
+                    borderBottomLeftRadius: width / 2 / 2,
+                  },
+                ]}
+              >
+                <FontAwesome name="sign-in" size={30} color={'white'} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleSignUp}
+                // onPress={() => this.tab("SignUp")}
+                style={[
+                  styles.item,
+                  {
+                    backgroundColor: enableButton ? 'green' : 'orange',
+                    borderTopRightRadius: width / 2 / 2,
+                    borderBottomRightRadius: width / 2 / 2,
+                  },
+                ]}
+              >
+                <FontAwesome
+                  name="registered"
+                  size={30}
+                  color={enableButton ? 'white' : 'black'}
+                />
+              </TouchableOpacity>
             </View>
-          </ImageBackground>
-        </View>
+            {enableButton ? <ActionSignin /> : <ActionSignup />}
+          </View>
+        </ImageBackground>
       </View>
-    )
-  }
+    </View>
+  )
 }
 
 const { width } = Dimensions.get('window')
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
-const scale = SCREEN_WIDTH / 320
-
-export function normalize(size) {
-  const newSize = size * scale
-  if (Platform.OS === 'ios') {
-    return Math.round(PixelRatio.roundToNearestPixel(newSize))
-  } else {
-    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-  }
-}
-
-//const width = Dimensions.get("screen").width;
-//tentuin topnya flex berapa
 const styles = StyleSheet.create({
   container: {
     flex: 1,
