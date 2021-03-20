@@ -20,7 +20,7 @@ export default class ActionSignin extends React.Component {
             </View>
             <View style={styles.input}>
               <TextInput
-                placeholder="  Your email ...."
+                placeholder="Your email ...."
                 style={styles.TextInput}
               />
             </View>
@@ -38,8 +38,9 @@ export default class ActionSignin extends React.Component {
             </View>
             <View style={styles.input}>
               <TextInput
-                placeholder="  Your password ...."
+                placeholder="Your password ...."
                 style={styles.TextInput}
+                secureTextEntry={true}
               />
             </View>
           </View>
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: '20%',
+    paddingTop: '10%',
     paddingHorizontal: 20,
     width: '90%',
   },
@@ -66,25 +67,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     width: '100%',
-    paddingVertical: 15,
-    paddingHorizontal: 8,
     borderRadius: 7,
     opacity: 0.9,
-    height: 50,
+    position: 'relative',
   },
   icon: {
     borderRightWidth: 1,
     borderRightColor: 'gray',
     paddingRight: 10,
-  },
-  input: {
-    flex: 1,
-    width: '100%',
+    position: 'absolute',
+    top: '50%',
+    transform: [{ translateY: -10 }],
+    left: 10,
   },
 
-  textInput: {
+  input: {},
+
+  TextInput: {
     borderRadius: 7,
-    paddingLeft: 10,
+    paddingLeft: 50,
+    paddingVertical: 15,
+    paddingRight: 8,
     width: '100%',
   },
 

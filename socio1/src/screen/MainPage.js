@@ -43,18 +43,22 @@ export default class MainPage extends React.Component {
         <View style={styles.header}>
           <ImageBackground
             source={require('../../src/assets/sociobackkground.jpg')}
-            style={{ width: '100%', height: '100%' }}
+            style={{
+              flex: 1,
+              width: '100%',
+              height: '100%',
+              alignItems: 'center',
+            }}
             resizeMode={'stretch'}
           >
             <View style={styles.logo}>
               <Image
                 source={require('../../src/assets/sociologo1.png')}
                 style={{
-                  width: '80%',
-                  height: '45%',
+                  width: '100%',
+                  height: '100%',
 
-                  justifyContent: 'center',
-                  marginLeft: '11%',
+                  // marginLeft: '11%',
                 }}
                 resizeMode={'stretch'}
               />
@@ -121,12 +125,16 @@ export function normalize(size) {
 }
 
 //const width = Dimensions.get("screen").width;
-
+//tentuin topnya flex berapa
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexGrow: 0,
+    flexBasis: SCREEN_HEIGHT,
     backgroundColor: '#fff',
     flexDirection: 'column',
+    justifyContent: 'flex-start',
+    overflow: 'scroll',
   },
   header: {
     flex: 1,
@@ -134,8 +142,9 @@ const styles = StyleSheet.create({
   },
   logo: {
     // flex: 1,
-    width: '100%',
-    height: '100%',
+    marginTop: 20,
+    width: 200,
+    height: 200,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -143,20 +152,20 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 1,
     shadowRadius: 2.62,
-    elevation: 2,
+    // elevation: 2,
   },
   tabbar: {
-    position: 'relative',
+    // position: 'relative',
     width: width,
-    bottom: 250,
-    height: 80,
+    // bottom: 250,
+    // height: 80,
+    marginTop: 20,
     justifyContent: 'center',
   },
   box: {
     width: width / 2,
     height: 50,
     borderRadius: width / 2 / 2,
-    elevation: 25,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
