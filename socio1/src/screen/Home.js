@@ -39,6 +39,7 @@ export default function Home(props) {
           user.activeMissions.length !== 0 ?
             <MyMission></MyMission> : null
         }
+        {/* <MyMission></MyMission> */}
         <Boxes handleChangePage={(value) => handleChangePage(value)}></Boxes>
 
       </ImageBackground>

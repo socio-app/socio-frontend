@@ -2,12 +2,17 @@ import React from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import ceklis from "../assets/ceklis.png";
 
+import { useSelector, useDispatch } from 'react-redux'
+
 const Card = (props) => {
+  const handlePickMission = () => {
+    props.handlePickMission(props.mission._id)
+  }
   return (
     <View style={styles.container}>
 
       <Text>{props.mission.title}</Text>
-      <TouchableOpacity style={styles.checkbox}>
+      <TouchableOpacity onPress={handlePickMission} style={styles.checkbox}>
         {
           props.mission.isTaken ?
             <Image source={ceklis} style={{ width: 20, height: 20 }} />

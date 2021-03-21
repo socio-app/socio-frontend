@@ -1,35 +1,99 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from "react-native";
 import { Button, Title, Paragraph, Checkbox } from "react-native-paper";
 import Card from "./Card.js";
 
+import { useDispatch, useSelector } from 'react-redux'
+import { pickMission } from '../redux/actions/pickMission.js'
 
-const Boxes = (props) => {
+import { useFocusEffect } from '@react-navigation/native'
+
+
+const Boxes = () => {
+  const user = useSelector(state => state.user.user)
+  const access_token = useSelector(state => state.user.access_token)
+  const [userLocal, setUserLocal] = useState({})
+  const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   setUserLocal({ ...user })
+  // }, [user])
+
+  useFocusEffect(
+    useCallback(() => {
+      // Do something when the screen is focused
+      setUserLocal({ ...user })
+      return () => {
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+        setUserLocal({})
+      };
+    }, [user])
+  );
+
+  const handleConfirm = () => {
+    const payload = {
+      _id: user._id,
+      statistic: userLocal.statistic,
+      missionPool: userLocal.missionPool,
+      activeMissions: userLocal.activeMissions,
+      access_token
+    }
+    dispatch(pickMission(payload))
+    // console.log(userLocal.statistic)
+  }
+
+  const handlePickMission = _id => {
+    const userCopy = JSON.parse(JSON.stringify(userLocal))
+    userCopy.missionPool.forEach(mission => {
+      if (mission._id === _id) {
+        if (!mission.isTaken) {
+          if (userCopy.activeMissions.length < userCopy.maxActiveMissions) {
+            mission.isTaken = true
+            userCopy.activeMissions.push(mission)
+          }
+        } else {
+          mission.isTaken = false
+
+          const filter = userCopy.activeMissions.filter(m => {
+            return m._id !== _id
+          })
+          userCopy.activeMissions = filter
+        }
+      }
+    })
+    setUserLocal(userCopy)
+  }
   return (
     <View style={styles.container}>
-      <Title style={{ marginTop: 20 }}>List Mission</Title>
-      <Title style={{ marginTop: 20 }}>Max : {props.user.activeMissions.length}/{props.user.maxActiveMissions}</Title>
-      <View style={styles.box}>
-        <FlatList
-          data={props.user.missionPool}
-          renderItem={(data) => (
-            <View style={{ width: "100%", alignItems: "center" }}>
-              <Card mission={data.item} />
+      {
+        userLocal.name ?
+          <View style={styles.container}>
+            <Title style={{ marginTop: 20 }}>List Mission</Title>
+            <Title style={{ marginTop: 20 }}>Max : {userLocal.activeMissions.length}/{userLocal.maxActiveMissions}</Title>
+            <View style={styles.box}>
+              <FlatList
+                data={userLocal.missionPool}
+                renderItem={(data) => (
+                  <View style={{ width: "100%", alignItems: "center" }}>
+                    <Card handlePickMission={(_id) => handlePickMission(_id)} mission={data.item} />
+                  </View>
+                )}
+                keyExtractor={(item) => item._id}
+                style={{ width: "80%" }}
+              />
+              <View style={styles.buttoncover}>
+                <Button
+                  style={styles.button}
+                  mode="contained"
+                  onPress={() => handleConfirm()}
+                >
+                  Confirm
+              </Button>
+              </View>
             </View>
-          )}
-          keyExtractor={(item) => item._id}
-          style={{ width: "100%" }}
-        />
-        <View style={styles.buttoncover}>
-          <Button
-            style={styles.button}
-            mode="contained"
-            onPress={() => console.log("Pressed")}
-          >
-            Confirm
-          </Button>
-        </View>
-      </View>
+          </View> : null
+      }
     </View>
   );
 };
