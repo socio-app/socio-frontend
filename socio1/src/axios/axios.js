@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'https://216ef97f1b7c.ngrok.io',
+  baseURL: 'http://192.168.0.5:3001',
 })
 
 export default instance

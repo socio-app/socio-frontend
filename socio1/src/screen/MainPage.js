@@ -59,7 +59,7 @@ export default function MainPage(props) {
   }
 
   const handleChangePage = (value) => {
-    props.navigation.navigate(value)
+    props.navigation.replace(value)
   }
 
   return (
@@ -129,7 +129,9 @@ export default function MainPage(props) {
                 handleChangePage={(value) => handleChangePage(value)}
               />
             ) : (
-              <ActionSignup />
+              <ActionSignup
+                handleChangePage={(value) => handleChangePage(value)}
+              />
             )}
           </View>
         </ImageBackground>

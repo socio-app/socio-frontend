@@ -7,10 +7,39 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { Button } from 'react-native-paper'
+import { register } from '../redux/actions/register.js'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as Animatable from 'react-native-animatable'
 
-export default function ActionSignup() {
+export default function ActionSignup(props) {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const access_token = useSelector((state) => state.user.access_token)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (access_token) {
+      console.log('pindah')
+      props.handleChangePage('Home')
+    }
+  }, [access_token])
+
+  const handleSubmit = () => {
+    console.log('kelik')
+    dispatch(
+      register({
+        name,
+        email,
+        password,
+      })
+    )
+  }
+
   return (
     <View style={{ alignItems: 'center' }}>
       <Animatable.View animation="bounceInLeft" style={styles.container}>
@@ -19,7 +48,12 @@ export default function ActionSignup() {
             <MaterialIcons name="face" color="gray" size={20} />
           </View>
           <View style={styles.input}>
-            <TextInput placeholder="Your name ...." style={styles.TextInput} />
+            <TextInput
+              placeholder="Your name ...."
+              style={styles.TextInput}
+              value={name}
+              onChangeText={setName}
+            />
           </View>
         </View>
         <View
@@ -34,7 +68,12 @@ export default function ActionSignup() {
             <MaterialIcons name="email" color="gray" size={20} />
           </View>
           <View style={styles.input}>
-            <TextInput placeholder="Your email ...." style={styles.TextInput} />
+            <TextInput
+              placeholder="Your email ...."
+              style={styles.TextInput}
+              value={email}
+              onChangeText={setEmail}
+            />
           </View>
         </View>
         <View
@@ -53,12 +92,15 @@ export default function ActionSignup() {
               placeholder="Your password ...."
               style={styles.TextInput}
               secureTextEntry={true}
+              value={password}
+              onChangeText={setPassword}
             />
           </View>
         </View>
         <TouchableOpacity
           onPress={() => console.log('Handle sign up!')}
           style={styles.button}
+          onPress={handleSubmit}
         >
           <Text style={styles.text}>Sign up</Text>
         </TouchableOpacity>

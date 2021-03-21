@@ -1,5 +1,4 @@
 // import { StatusBar } from "expo-status-bar";
-import * as updates from 'expo-updates'
 import React from 'react'
 import Navigation from './src/navigation/navigation'
 import { store } from './src/redux/store'
@@ -8,8 +7,6 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import MainPage from './src/screen/MainPage.js'
 import Home from './src/screen/Home.js'
-
-console.log(updates.manifest)
 
 const Stack = createStackNavigator()
 
