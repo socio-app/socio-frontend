@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   StyleSheet,
   Text,
@@ -18,12 +18,47 @@ import Boxes from "../Components/Boxes";
 import MyMission from "../Components/MyMission";
 import Congratulation from "../Components/Congratulation";
 
+import { useFocusEffect } from '@react-navigation/native'
+import { dailyReset } from '../redux/actions/dailyReset.js'
+
+import { fetchUser } from '../redux/actions/fetchUser.js'
+
 export default function Home(props) {
   const user = useSelector((state) => state.user.user)
+  const access_token = useSelector((state) => state.user.access_token)
 
   const handleChangePage = value => {
     props.navigation.navigate(value)
   }
+
+  const dispatch = useDispatch()
+
+
+
+  useFocusEffect(
+    useCallback(() => {
+      // Do something when the screen is focused
+      const lastOnline = new Date(user.lastOnline).getDate()
+      const currentDate = new Date().getDate()
+      if (lastOnline !== currentDate) {
+        console.log('dispatch daily reset')
+        dispatch(dailyReset({
+          _id: user._id,
+          access_token
+        }))
+      }
+    }, [user])
+  );
+
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     // Do something when the screen is focused
+  //     dispatch(fetchUser({
+  //       _id: user._id,
+  //       access_token
+  //     }))
+  //   }, [user.activeMissions])
+  // );
 
   return (
     <View style={styles.container}>

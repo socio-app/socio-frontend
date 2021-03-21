@@ -9,7 +9,7 @@ import { pickMission } from '../redux/actions/pickMission.js'
 import { useFocusEffect } from '@react-navigation/native'
 
 
-const Boxes = () => {
+const Boxes = (props) => {
   const user = useSelector(state => state.user.user)
   const access_token = useSelector(state => state.user.access_token)
   const [userLocal, setUserLocal] = useState({})
@@ -41,6 +41,7 @@ const Boxes = () => {
     }
     dispatch(pickMission(payload))
     // console.log(userLocal.statistic)
+    props.handleChangePage('Home')
   }
 
   const handlePickMission = _id => {
