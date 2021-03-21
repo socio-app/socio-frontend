@@ -1,7 +1,8 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Avatar, ProgressBar, Colors } from "react-native-paper";
-import { StatusBar } from "expo-status-bar";
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { Avatar, ProgressBar, Colors } from 'react-native-paper'
+import { StatusBar } from 'expo-status-bar'
+import { useSelector } from 'react-redux'
 
 const Progress = ({ step, steps, height }) => {
   return (
@@ -9,80 +10,81 @@ const Progress = ({ step, steps, height }) => {
       <View
         style={{
           height,
-          backgroundColor: "rgba(0,0,0,0,1)",
+          backgroundColor: 'rgba(0,0,0,0,1)',
           borderRadius: height,
-          overflow: "hidden",
+          overflow: 'hidden',
         }}
       >
         <View
           style={{
             height,
-            width: "50%",
+            width: '50%',
             borderRadius: height,
-            position: "absolute",
+            position: 'absolute',
             left: 0,
             top: 0,
-            backgroundColor: "rgba(0,0,0,0.5",
+            backgroundColor: 'rgba(0,0,0,0.5',
           }}
         />
       </View>
     </>
-  );
-};
+  )
+}
 
 export default function Header() {
+  const user = useSelector((state) => state.user.user)
   return (
     <View container style={styles.header}>
       <View style={styles.avatar}>
-        <Avatar.Image size={42} label="Avatar" />
+        <Avatar.Image size={42} source={{ uri: user.photo }} />
       </View>
       <View style={styles.progressBar}>
         {/* <Avatar.Text size={45} label="ProgressBar" /> */}
         <Text style={styles.textLevel}>Exp</Text>
         <ProgressBar
-          progress={0.8}
+          progress={(user?.currentExperience / 10) * 1.5}
           color={Colors.red800}
           style={styles.progressbarinner}
         />
       </View>
       <View style={styles.level}>
-        <Avatar.Text size={42} label="Level" />
+        <Avatar.Text size={42} label={user?.level} />
       </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   header: {
-    width: "100%",
-    height: "10%",
+    width: '100%',
+    height: '10%',
     // alignItems: "start",
-    flexDirection: "row",
+    flexDirection: 'row',
     // justifyContent: "center",
-    backgroundColor: "#eee",
+    backgroundColor: '#eee',
   },
   avatar: {
-    justifyContent: "center",
-    marginLeft: "0%",
+    justifyContent: 'center',
+    marginLeft: '0%',
   },
   level: {
-    justifyContent: "center",
+    justifyContent: 'center',
 
-    marginLeft: "25%",
+    marginLeft: '25%',
   },
   progressBar: {
     flex: 1,
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     width: 50,
-    justifyContent: "center",
-    marginLeft: "8%",
+    justifyContent: 'center',
+    marginLeft: '8%',
   },
   progressbarinner: {
-    width: "135%",
-    justifyContent: "center",
+    width: '135%',
+    justifyContent: 'center',
   },
   textLevel: {
-    marginLeft: "58%",
+    marginLeft: '58%',
     paddingBottom: 5,
   },
-});
+})
