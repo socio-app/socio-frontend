@@ -17,8 +17,13 @@ import Headers from "../Components/HeaderComponents";
 import Boxes from "../Components/Boxes";
 import MyMission from "../Components/MyMission";
 
-export default function Home() {
-  const user = useSelector((state) => state.user.user);
+export default function Home(props) {
+  const user = useSelector((state) => state.user.user)
+
+  const handleChangePage = value => {
+    props.navigation.navigate(value)
+  }
+
   return (
     <View style={styles.container}>
       {/* <Text>HAII INI DI HOME PAGE</Text> */}
@@ -28,8 +33,11 @@ export default function Home() {
         resizeMode={"stretch"}
       >
         <Headers />
-        <MyMission></MyMission>
-        <Boxes></Boxes>
+        {
+          user.activeMissions.length !== 0 ?
+            <MyMission></MyMission> : null
+        }
+        <Boxes handleChangePage={(value) => handleChangePage(value)}></Boxes>
       </ImageBackground>
     </View>
   );

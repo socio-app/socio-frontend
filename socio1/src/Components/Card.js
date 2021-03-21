@@ -1,14 +1,19 @@
 import React from "react";
-import { View, StyleSheet, Button, Text, Image, FlatList } from "react-native";
+import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import ceklis from "../assets/ceklis.png";
 
 const Card = (props) => {
   return (
     <View style={styles.container}>
-      <Text>{props.mission}</Text>
-      <View style={styles.checkbox}>
-        <Image source={ceklis} style={{ width: 20, height: 20 }} />
-      </View>
+      <Text>{props.mission.title}</Text>
+      <TouchableOpacity style={styles.checkbox}>
+        {
+          props.mission.isTaken ?
+            <Image source={ceklis} style={{ width: 20, height: 20 }} />
+            :
+            null
+        }
+      </TouchableOpacity>
     </View>
   );
 };
@@ -31,6 +36,7 @@ const styles = StyleSheet.create({
     height: 25,
     justifyContent: "center",
     alignItems: "center",
+
   },
 });
 
