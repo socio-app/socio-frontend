@@ -16,6 +16,7 @@ import {
 import Headers from "../Components/HeaderComponents";
 import Boxes from "../Components/Boxes";
 import MyMission from "../Components/MyMission";
+import Congratulation from "../Components/Congratulation";
 
 export default function Home(props) {
   const user = useSelector((state) => state.user.user)
@@ -33,11 +34,13 @@ export default function Home(props) {
         resizeMode={"stretch"}
       >
         <Headers />
+
         {
           user.activeMissions.length !== 0 ?
             <MyMission></MyMission> : null
         }
         <Boxes handleChangePage={(value) => handleChangePage(value)}></Boxes>
+
       </ImageBackground>
     </View>
   );
