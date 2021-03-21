@@ -13,7 +13,7 @@ export const pickMission = payload => async dispatch => {
       },
       headers: { access_token: payload.access_token }
     })
-    console.log(newUser.data)
+    console.log(newUser.data, 'data baru setelah ambil misi')
     dispatch({ type: 'FETCH_USER', data: newUser.data })
   } catch (err) {
     console.log(err)

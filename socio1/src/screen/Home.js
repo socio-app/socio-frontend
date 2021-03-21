@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   StyleSheet,
@@ -33,32 +33,32 @@ export default function Home(props) {
 
   const dispatch = useDispatch()
 
-
-
   useFocusEffect(
     useCallback(() => {
       // Do something when the screen is focused
       const lastOnline = new Date(user.lastOnline).getDate()
       const currentDate = new Date().getDate()
+
       if (lastOnline !== currentDate) {
         console.log('dispatch daily reset')
         dispatch(dailyReset({
           _id: user._id,
           access_token
         }))
-      }
+      } 
     }, [user])
   );
 
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     // Do something when the screen is focused
-  //     dispatch(fetchUser({
-  //       _id: user._id,
-  //       access_token
-  //     }))
-  //   }, [user.activeMissions])
-  // );
+  useFocusEffect(
+    useCallback(() => {
+      // Do something when the screen is focused
+      dispatch(fetchUser({
+        _id: user._id,
+        access_token
+      }))
+    }, [dispatch])
+  );
+  console.log(user.activeMissions)
 
   return (
     <View style={styles.container}>
@@ -71,8 +71,8 @@ export default function Home(props) {
         <Headers />
 
         {
-          user.activeMissions.length !== 0 ?
-            <MyMission></MyMission> : null
+          user?.activeMissions?.length !== 0 ?
+            <MyMission handleChangePage={(value) => handleChangePage(value)} ></MyMission> : null
         }
         {/* <MyMission></MyMission> */}
         <Boxes handleChangePage={(value) => handleChangePage(value)}></Boxes>
