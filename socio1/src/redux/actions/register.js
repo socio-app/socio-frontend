@@ -1,13 +1,14 @@
 import axios from '../../axios/axios.js'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export const login = (payload) => async (dispatch) => {
+export const register = (payload) => async (dispatch) => {
   try {
     console.log(payload)
     const dataAuth = await axios({
-      url: '/users/login',
+      url: '/users/register',
       method: 'POST',
       data: {
+        name: payload.name,
         email: payload.email,
         password: payload.password,
       },
