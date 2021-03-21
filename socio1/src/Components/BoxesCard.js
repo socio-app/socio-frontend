@@ -1,29 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from "react-native";
 import { Button, Title, Paragraph, Checkbox } from "react-native-paper";
 import Card from "./Card.js";
-const Boxes = () => {
-  const [missions, setMissions] = useState([
-    "mission 1",
-    "mission2",
-    "mission 3",
-    "mission 30",
-    "mission 4",
-    "mission 5",
-    "mission 6",
-  ]);
+
+
+const Boxes = (props) => {
   return (
     <View style={styles.container}>
       <Title style={{ marginTop: 20 }}>List Mission</Title>
+      <Title style={{ marginTop: 20 }}>Max : {props.user.activeMissions.length}/{props.user.maxActiveMissions}</Title>
       <View style={styles.box}>
         <FlatList
-          data={missions}
+          data={props.user.missionPool}
           renderItem={(data) => (
             <View style={{ width: "100%", alignItems: "center" }}>
               <Card mission={data.item} />
             </View>
           )}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item._id}
           style={{ width: "100%" }}
         />
         <View style={styles.buttoncover}>

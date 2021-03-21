@@ -2,7 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { Button, Title } from "react-native-paper";
 
-export default function Boxes() {
+export default function Boxes(props) {
+  const handleChangePage = value => {
+    props.handleChangePage(value)
+  }
   return (
     <View style={styles.container}>
       <Title>Your Mission</Title>
@@ -13,7 +16,7 @@ export default function Boxes() {
             <Button
               style={styles.button}
               mode="contained"
-              onPress={() => console.log("Pressed")}
+              onPress={() => handleChangePage('MissionList')}
             >
               go to mission
             </Button>
