@@ -1,12 +1,12 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
-const Stack = createStackNavigator()
-const Tab = createBottomTabNavigator()
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 import MainPage from "../screen/MainPage";
 import Home from "../screen/Home";
@@ -66,7 +66,7 @@ function HomeHandling() {
 function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="MainPage" component={MainPage} />
 
         <Stack.Screen name="Home" component={HomeHandling} />
@@ -74,7 +74,5 @@ function Navigation() {
     </NavigationContainer>
   );
 }
-
-
 
 export default Navigation;
