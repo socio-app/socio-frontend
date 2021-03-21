@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import { useSelector } from 'react-redux'
 import {
   StyleSheet,
   Text,
@@ -13,41 +14,28 @@ import {
 } from "react-native";
 
 import Headers from "../Components/HeaderComponents";
-import { Card, Title, Paragraph, Button } from "react-native-paper";
 import Boxes from "../Components/Boxes";
 
-export default class Home extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        {/* <Text>HAII INI DI HOME PAGE</Text> */}
-        <ImageBackground
-          source={require("../../src/assets/sociobackkground.jpg")}
-          style={{ width: "100%", height: "100%" }}
-          resizeMode={"stretch"}
-        >
-          <Headers />
+export default function Home() {
+  const user = useSelector(state => state.user.user)
+  return (
+    <View style={styles.container}>
+      {/* <Text>HAII INI DI HOME PAGE</Text> */}
+      <ImageBackground
+        source={require("../../src/assets/sociobackkground.jpg")}
+        style={{ width: "100%", height: "100%" }}
+        resizeMode={"stretch"}
+      >
+        <Headers />
 
-          <Boxes></Boxes>
-        </ImageBackground>
-      </View>
-    );
-  }
+        <Boxes></Boxes>
+      </ImageBackground>
+    </View>
+  );
 }
 
 const { width } = Dimensions.get("window");
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
-
-const scale = SCREEN_WIDTH / 320;
-
-export function normalize(size) {
-  const newSize = size * scale;
-  if (Platform.OS === "ios") {
-    return Math.round(PixelRatio.roundToNearestPixel(newSize));
-  } else {
-    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
-  }
-}
 
 const styles = StyleSheet.create({
   container: {
