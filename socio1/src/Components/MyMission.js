@@ -1,29 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
 import { Button, Title } from "react-native-paper";
 import Card from "./Card";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function MyMission() {
-  const [missions, setMissions] = useState([
-    "mission 1",
-    "mission2",
-    "mission 3",
-    "mission 30",
-    "mission 4",
-    "mission 5",
-    "mission 6",
-  ]);
+  const user = useSelector(state => state.user.user)
+
   return (
     <View style={styles.container}>
       <Title>Your Mission</Title>
       <View style={styles.box}>
         <FlatList
-          data={missions}
+          data={user.activeMissions}
           renderItem={(data) => (
             <View style={styles.inner}>
-              <Card />
+              <Card missions={data.item} />
             </View>
           )}
           keyExtractor={(item) => item}
