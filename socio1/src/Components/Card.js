@@ -1,27 +1,63 @@
 import React from "react";
-import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, Image, TouchableOpacity, Alert } from "react-native";
 import ceklis from "../assets/ceklis.png";
 
 import { useSelector, useDispatch } from 'react-redux'
 
 const Card = (props) => {
+  const user = useSelector(state => state.user.user)
+  
+  const updateMission = () => {
+
+  }
+  const showAlert = () =>
+    Alert.alert(
+      "Confirmation on your Mission",
+      "Sudah selesaikah ?",
+      [
+        {
+          text: "Cancel",
+          // onPress: () => Alert.alert("Cancel Pressed"),
+          style: "cancel",
+        },
+        {
+          text: "Ok",
+          // onPress: () => Alert.alert("OK bro Pressed"),
+        },
+      ],
+      // {
+      //   cancelable: true,
+      //   onDismiss: () =>
+      //     Alert.alert(
+      //       "This alert was dismissed by tapping outside of the alert dialog."
+      //     ),
+      // }
+  );
   const handlePickMission = () => {
-    props.handlePickMission(props.mission._id)
+    // props.handlePickMission(props.mission._id)
+    if (props.type !== "Home") {
+      props.handlePickMission(props.mission._id)
+    } else {
+      showAlert()
+    }
   }
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={handlePickMission} style={styles.container}>
 
       <Text>{props.mission.title}</Text>
-      <TouchableOpacity onPress={handlePickMission} style={styles.checkbox}>
-        {
-          props.mission.isTaken ?
-            <Image source={ceklis} style={{ width: 20, height: 20 }} />
-            :
-            null
-        }
-      </TouchableOpacity>
+      {
+        props.type !== "Home" ?
+          <View style={styles.checkbox}>
+          {
+            props.mission.isTaken ?
+              <Image source={ceklis} style={{ width: 20, height: 20 }} />
+              :
+              null
+          }
+        </View> : null
+      } 
 
-    </View>
+    </TouchableOpacity>
   );
 };
 

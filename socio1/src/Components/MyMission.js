@@ -5,7 +5,7 @@ import Card from "./Card";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useDispatch, useSelector } from 'react-redux'
 
-export default function MyMission() {
+export default function MyMission(props) {
   const user = useSelector(state => state.user.user)
 
   return (
@@ -16,7 +16,7 @@ export default function MyMission() {
           data={user.activeMissions}
           renderItem={(data) => (
             <View style={styles.inner}>
-              <Card mission={data.item} />
+              <Card mission={data.item} type="Home" />
             </View>
           )}
           keyExtractor={(item) => item._id}
@@ -27,7 +27,7 @@ export default function MyMission() {
           <Button
             style={styles.button}
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            onPress={() => props.handleChangePage("MissionList")}
           >
             <FontAwesome name="plus" size={30} color={"#e45826"} />
           </Button>

@@ -8,7 +8,7 @@ export const fetchUser = payload => async dispatch => {
       method: 'GET',
       headers: { access_token: payload.access_token }
     })
-    console.log(user)
+    // console.log(user)
     dispatch({ type: 'FETCH_USER', data: user.data.user })
   } catch (err) {
     console.log('err')

@@ -9,11 +9,13 @@ import { pickMission } from '../redux/actions/pickMission.js'
 import { useFocusEffect } from '@react-navigation/native'
 
 
+
 const Boxes = (props) => {
   const user = useSelector(state => state.user.user)
   const access_token = useSelector(state => state.user.access_token)
   const [userLocal, setUserLocal] = useState({})
   const dispatch = useDispatch()
+  const [flag, setFlag] = useState(false)
 
   // useEffect(() => {
   //   setUserLocal({ ...user })
@@ -40,21 +42,25 @@ const Boxes = (props) => {
       access_token
     }
     dispatch(pickMission(payload))
+
     // console.log(userLocal.statistic)
     props.handleChangePage('Home')
   }
 
   const handlePickMission = _id => {
     const userCopy = JSON.parse(JSON.stringify(userLocal))
+
     userCopy.missionPool.forEach(mission => {
       if (mission._id === _id) {
         if (!mission.isTaken) {
           if (userCopy.activeMissions.length < userCopy.maxActiveMissions) {
             mission.isTaken = true
+            setFlag(true)
             userCopy.activeMissions.push(mission)
           }
         } else {
           mission.isTaken = false
+          setFlag(false)
 
           const filter = userCopy.activeMissions.filter(m => {
             return m._id !== _id
@@ -77,7 +83,7 @@ const Boxes = (props) => {
                 data={userLocal.missionPool}
                 renderItem={(data) => (
                   <View style={{ width: "100%", alignItems: "center" }}>
-                    <Card handlePickMission={(_id) => handlePickMission(_id)} mission={data.item} />
+                    <Card handlePickMission={(_id) => handlePickMission(_id)} mission={data.item} flag={flag} type="MissionList" />
                   </View>
                 )}
                 keyExtractor={(item) => item._id}
