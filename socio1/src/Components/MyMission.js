@@ -16,10 +16,10 @@ export default function MyMission() {
           data={user.activeMissions}
           renderItem={(data) => (
             <View style={styles.inner}>
-              <Card missions={data.item} />
+              <Card mission={data.item} />
             </View>
           )}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item._id}
           style={{ width: "100%" }}
         />
 

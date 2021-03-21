@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useFocusEffect } from '@react-navigation/native'
 import { dailyReset } from '../redux/actions/dailyReset.js'
 
-export default function MissionList() {
+export default function MissionList(props) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user.user)
   const access_token = useSelector(state => state.user.access_token)
@@ -30,6 +30,11 @@ export default function MissionList() {
       }
     }, [user])
   );
+
+  const handleChangePage = value => {
+    props.navigation.navigate(value)
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -38,7 +43,7 @@ export default function MissionList() {
         resizeMode={"stretch"}
       >
         <Headers />
-        <BoxesCard user={user} />
+        <BoxesCard handleChangePage={(value) => handleChangePage(value)} user={user} />
       </ImageBackground>
     </View>
   )
