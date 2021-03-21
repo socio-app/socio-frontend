@@ -16,6 +16,7 @@ import {
 import Headers from "../Components/HeaderComponents";
 import Boxes from "../Components/Boxes";
 import MyMission from "../Components/MyMission";
+import Congratulation from "../Components/Congratulation";
 
 export default function Home() {
   const user = useSelector((state) => state.user.user);
@@ -28,6 +29,7 @@ export default function Home() {
         resizeMode={"stretch"}
       >
         <Headers />
+        <Congratulation></Congratulation>
         <MyMission></MyMission>
         <Boxes></Boxes>
       </ImageBackground>

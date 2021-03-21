@@ -13,13 +13,12 @@ import {
   PixelRatio,
   Platform,
   Animated,
+  style,
 } from "react-native";
 import Svg, { G, Circle, Rect } from "react-native-svg";
 import { useEffect } from "react";
 
 import Header from "./HeaderComponents";
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 export default function Donut({
   percentage = 75,
@@ -36,52 +35,52 @@ export default function Donut({
   const circleCircumference = 2 * Math.PI * radius;
 
   return (
-    <View style={styles.container}>
+    <View style={styles.containerOut}>
       <Text>Statistic</Text>
-      <Svg
-        width={radius * 3}
-        height={radius * 3}
-        viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}
+      <View
+        style={[styles.container, { width: radius * 3, height: radius * 3 }]}
       >
-        <G>
-          <Circle
-            cx="50%"
-            cy="50%"
-            stroke={color}
-            strokeWidth={strokeWidth}
-            r={radius}
-            strokeOpacity={0.2}
-            fill="transparent"
-          />
-          <Circle
-            cx="50%"
-            cy="50%"
-            stroke={color}
-            strokeWidth={strokeWidth}
-            r={radius}
-            fill="transparent"
-            strokeDasharray={circleCircumference}
-            strokeDashoffset={circleCircumference * (1 - 5 / 10)}
-            strokeLinecap="round"
-          />
-        </G>
-      </Svg>
+        <Svg
+          style={styles.chart}
+          width={radius * 3}
+          height={radius * 3}
+          viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}
+        >
+          <G>
+            <Circle
+              cx="50%"
+              cy="50%"
+              stroke={color}
+              strokeWidth={strokeWidth}
+              r={radius}
+              strokeOpacity={0.2}
+              fill="transparent"
+            />
+            <Circle
+              cx="50%"
+              cy="50%"
+              stroke={color}
+              strokeWidth={strokeWidth}
+              r={radius}
+              fill="transparent"
+              strokeDasharray={circleCircumference}
+              strokeDashoffset={circleCircumference * (1 - 5 / 10)}
+              strokeLinecap="round"
+            />
+          </G>
+        </Svg>
 
-      <TextInput
-        ref={inputRef}
-        underlineColorAndroid="transparent"
-        editable={false}
-        defaultValue="0"
-        style={[
-          StyleSheet.absoluteFillObject,
-          {
-            fontSize: radius / 2,
-            color: textColor ?? color,
-            marginHorizontal: 150,
-          },
-          styles.text,
-        ]}
-      />
+        <TextInput
+          ref={inputRef}
+          underlineColorAndroid="transparent"
+          editable={false}
+          defaultValue="100%"
+          style={styles.text}
+        />
+      </View>
+
+      <Text>Total Played Days:</Text>
+      <Text>Total Mission:</Text>
     </View>
   );
 }
@@ -101,17 +100,35 @@ export function normalize(size) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginLeft: 10,
+  containerOut: {
+    alignItems: "center",
+    height: "100%",
+    marginTop: 17,
+  },
 
-    marginTop: 50,
+  container: {
+    position: "relative",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "transparent",
-    width: 331,
-    height: 500,
+    flexDirection: "row",
   },
   text: {
-    marginLeft: 10,
+    textAlign: "center",
+    width: "100%",
+    // top: "50%",
+    // left: "50%",
+    // transform: [{ translateY: -10 }],
+  },
+  chart: {
+    position: "absolute",
+
+    top: 0,
+  },
+  face: {
+    color: "red",
+  },
+  back: {
+    color: "blue",
   },
 });

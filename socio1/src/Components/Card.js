@@ -5,7 +5,7 @@ import ceklis from "../assets/ceklis.png";
 const Card = (props) => {
   return (
     <View style={styles.container}>
-      <Text>{props.mission}</Text>
+      <Text>{props.item}</Text>
       <View style={styles.checkbox}>
         <Image source={ceklis} style={{ width: 20, height: 20 }} />
       </View>
