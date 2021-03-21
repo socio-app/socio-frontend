@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from "react-native";
-import { Button, Title, Paragraph, Checkbox } from "react-native-paper";
-import Card from "./Card.js";
-const Boxes = () => {
+import React from "react";
+import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
+import { Button, Title } from "react-native-paper";
+import Card from "./Card";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { useState } from "react";
+
+export default function MyMission() {
   const [missions, setMissions] = useState([
     "mission 1",
     "mission2",
@@ -14,37 +17,42 @@ const Boxes = () => {
   ]);
   return (
     <View style={styles.container}>
-      <Title style={{ marginTop: 20 }}>List Mission</Title>
+      <Title>Your Mission</Title>
       <View style={styles.box}>
         <FlatList
           data={missions}
           renderItem={(data) => (
-            <View style={{ width: "100%", alignItems: "center" }}>
-              <Card mission={data.item} />
+            <View style={styles.inner}>
+              <Card />
             </View>
           )}
           keyExtractor={(item) => item}
           style={{ width: "100%" }}
         />
+
         <View style={styles.buttoncover}>
           <Button
             style={styles.button}
             mode="contained"
             onPress={() => console.log("Pressed")}
           >
-            Confirm
+            <FontAwesome name="plus" size={30} color={"#e45826"} />
           </Button>
         </View>
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
+    height: "85%",
+    padding: 5,
+    marginTop: "10%",
+    flexDirection: "row",
+    flexWrap: "wrap",
     justifyContent: "center",
-    alignItems: "center",
-    flex: 1,
   },
   box: {
     width: "100%",
@@ -57,25 +65,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  card: {
-    width: "80%",
-    height: "20%",
-    marginTop: 5,
-  },
-  card1: {
-    marginBottom: 5,
-  },
   button: {
-    backgroundColor: "green",
-    alignItems: "center",
+    backgroundColor: "#7fdbda",
+
     justifyContent: "center",
     marginTop: 50,
-    borderRadius: 50,
+    borderRadius: 30,
     width: 50,
   },
   buttoncover: {
     alignItems: "center",
   },
 });
-
-export default Boxes;

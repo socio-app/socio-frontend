@@ -1,5 +1,5 @@
-import React from "react"
-import { useSelector } from 'react-redux'
+import React from "react";
+import { useSelector } from "react-redux";
 import {
   StyleSheet,
   Text,
@@ -15,9 +15,10 @@ import {
 
 import Headers from "../Components/HeaderComponents";
 import Boxes from "../Components/Boxes";
+import MyMission from "../Components/MyMission";
 
 export default function Home() {
-  const user = useSelector(state => state.user.user)
+  const user = useSelector((state) => state.user.user);
   return (
     <View style={styles.container}>
       {/* <Text>HAII INI DI HOME PAGE</Text> */}
@@ -27,7 +28,7 @@ export default function Home() {
         resizeMode={"stretch"}
       >
         <Headers />
-
+        <MyMission></MyMission>
         <Boxes></Boxes>
       </ImageBackground>
     </View>

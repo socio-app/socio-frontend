@@ -67,7 +67,7 @@ function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="MainPage" component={MainPage} />
+        {/* <Stack.Screen name="MainPage" component={MainPage} /> */}
 
         <Stack.Screen name="Home" component={HomeHandling} />
       </Stack.Navigator>
