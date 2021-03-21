@@ -13,10 +13,7 @@ export default class Boxes extends React.Component {
             <Animatable.View animation="bounceInLeft" style={styles.inner}>
               <Card style={styles.card}>
                 <Card.Content style={styles.card1}>
-                  <Checkbox.Item
-                    label="Nelpon mantan katakan maaf"
-                    status="unchecked"
-                  />
+                  <Checkbox />
                 </Card.Content>
               </Card>
               <Card style={styles.card}>

@@ -14,7 +14,7 @@ export default class ActionSignup extends React.Component {
   render() {
     return (
       <View style={{ alignItems: "center" }}>
-        <Animatable.View animation="bounceInLeft" style={styles.container}>
+        <Animatable.View animation="bounceInRight" style={styles.container}>
           <View style={styles.section}>
             <View style={styles.icon}>
               <MaterialIcons name="email" color="gray" size={20} />
@@ -48,7 +48,7 @@ export default class ActionSignup extends React.Component {
             <View style={styles.button}>
               <Text style={styles.text}>Sign Up</Text>
             </View>
-          </TouchableOpacity>     
+          </TouchableOpacity>
         </Animatable.View>
       </View>
     );
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: "20%",
     paddingHorizontal: 20,
-    width: "90%"
+    width: "90%",
   },
   section: {
     flexDirection: "row",
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 7,
     opacity: 0.9,
-    height: 50
+    height: 50,
   },
   icon: {
     borderRightWidth: 1,
@@ -80,12 +80,12 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    width: "100%"
+    width: "100%",
   },
   textInput: {
     borderRadius: 7,
     paddingLeft: 10,
-    width: "100%"
+    width: "100%",
   },
 
   button_container: {

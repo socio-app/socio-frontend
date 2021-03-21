@@ -41,7 +41,7 @@ export default class Header extends React.Component {
           {/* <Avatar.Text size={45} label="ProgressBar" /> */}
           <Text style={styles.textLevel}>Exp</Text>
           <ProgressBar
-            progress={0.8}
+            progress={0}
             color={Colors.red800}
             style={styles.progressbarinner}
           />

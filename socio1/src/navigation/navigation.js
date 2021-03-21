@@ -12,63 +12,128 @@ import MainPage from "../screen/MainPage";
 import Home from "../screen/Home";
 import MissionList from "../screen/MissionList";
 import UserStats from "../screen/UserStats";
+import MainPageScreen from "../navigation/MainpageNav";
 
-const Navigation = () => {
+function HomeHandling() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{
+        activeTintColor: "#e91e63",
+      }}
+    >
+      {/* <Tab.Screen name="MainPage" component={MainPage} /> */}
+
+      <Tab.Screen
+        name="MissionList"
+        component={MissionList}
+        options={{
+          tabBarLabel: "MissionList",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="format-list-checkbox"
+              color={color}
+              size={size}
+            />
+          ),
+          // tabBarBadge: 3,
+        }}
+      />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="UserStats"
+        component={UserStats}
+        options={{
+          tabBarLabel: "UserStats",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="stats-chart" color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+function Navigation() {
   return (
     <NavigationContainer>
-      {/* <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} />
-        <Stack.Screen name="MainPage" component={MainPage} />
+      <Stack.Navigator>
+        {/* <Stack.Screen name="MainPage" component={MainPage} /> */}
 
-        <Stack.Screen name="Finish" component={Finish} /> 
-      </Tab.Navigator> */}
-
-      <Tab.Navigator
-        initialRouteName="Home"
-        tabBarOptions={{
-          activeTintColor: "#e91e63",
-        }}
-      >
-        <Tab.Screen name="MainPage" component={MainPage} />
-
-        <Tab.Screen
-          name="MissionList"
-          component={MissionList}
-          options={{
-            tabBarLabel: "MissionList",
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons
-                name="format-list-checkbox"
-                color={color}
-                size={size}
-              />
-            ),
-            // tabBarBadge: 3,
-          }}
-        />
-        <Tab.Screen
-          name="Home"
-          component={Home}
-          options={{
-            tabBarLabel: "Home",
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="UserStats"
-          component={UserStats}
-          options={{
-            tabBarLabel: "UserStats",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="stats-chart" color={color} size={size} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+        <Stack.Screen name="Home" component={HomeHandling} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
+
+// const Navigation = () => {
+//   return (
+//     <NavigationContainer>
+//       {/* <Tab.Navigator>
+//         <Tab.Screen name="Home" component={Home} />
+//         <Stack.Screen name="MainPage" component={MainPage} />
+
+//         <Stack.Screen name="Finish" component={Finish} />
+//       </Tab.Navigator> */}
+//       <Stack.Navigator>
+//         <Stack.Screen name="MainPage" component={MainPage} />
+//       </Stack.Navigator>
+
+//       <Tab.Navigator
+//         initialRouteName="Home"
+//         tabBarOptions={{
+//           activeTintColor: "#e91e63",
+//         }}
+//       >
+//         {/* <Tab.Screen name="MainPage" component={MainPage} /> */}
+
+//         <Tab.Screen
+//           name="MissionList"
+//           component={MissionList}
+//           options={{
+//             tabBarLabel: "MissionList",
+//             tabBarIcon: ({ color, size }) => (
+//               <MaterialCommunityIcons
+//                 name="format-list-checkbox"
+//                 color={color}
+//                 size={size}
+//               />
+//             ),
+//             // tabBarBadge: 3,
+//           }}
+//         />
+//         <Tab.Screen
+//           name="Home"
+//           component={Home}
+//           options={{
+//             tabBarLabel: "Home",
+//             tabBarIcon: ({ color, size }) => (
+//               <MaterialCommunityIcons name="home" color={color} size={size} />
+//             ),
+//           }}
+//         />
+//         <Tab.Screen
+//           name="UserStats"
+//           component={UserStats}
+//           options={{
+//             tabBarLabel: "UserStats",
+//             tabBarIcon: ({ color, size }) => (
+//               <Ionicons name="stats-chart" color={color} size={size} />
+//             ),
+//           }}
+//         />
+//       </Tab.Navigator>
+//     </NavigationContainer>
+//   );
+// };
 
 export default Navigation;
