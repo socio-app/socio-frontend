@@ -40,7 +40,7 @@ export default function Header() {
       </View>
       <View style={styles.progressBar}>
         {/* <Avatar.Text size={45} label="ProgressBar" /> */}
-        <Text style={styles.textLevel}>Exp</Text>
+        <Text style={styles.textLevel}>Exp {user?.currentExperience} / 10</Text>
         <ProgressBar
           progress={(user?.currentExperience / 10) * 1.5}
           color={Colors.red800}
