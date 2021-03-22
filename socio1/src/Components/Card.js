@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import {
   View,
   StyleSheet,
@@ -12,17 +12,34 @@ import ceklis from '../assets/ceklis.png'
 import { useSelector, useDispatch } from 'react-redux'
 import { expIncrease } from '../redux/actions/expIncrease'
 import { levelUp } from '../redux/actions/levelUp'
+import { useFocusEffect } from '@react-navigation/core'
 
 const Card = (props) => {
   const dispatch = useDispatch()
   const [status, setStatus] = useState(true)
+  const [statusMyMission, setMyMission] = useState(true)
 
   const user = useSelector((state) => state.user.user)
   const access_token = useSelector((state) => state.user.access_token)
+  console.log(props.mission.isFinished, 'tanda mission props')
+
+  useFocusEffect(
+    useCallback(() => {
+      if (props.isTaken) setStatus(!props.isTaken)
+    }, [])
+  )
 
   useEffect(() => {
-    if (props.isTaken) setStatus(!props.isTaken)
-  }, [])
+    if (props.mission.isFinished) setMyMission(!props.mission.isFinished)
+  }, [props.mission])
+
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     console.log(user?.statistic?.totalSuccessMissions, user?.statistic?.totalMissions, 'hasil itung')
+  //     setPersentase(user?.statistic?.totalSuccessMissions / user?.statistic?.totalMissions)
+  //     // setTotalMission(user?.statistic?.totalMissions)
+  //   }, [user.statistic])
+  // )
 
   const updateMission = () => {
     console.log('Going to finish mission')
@@ -70,6 +87,7 @@ const Card = (props) => {
           },
         })
       )
+      alert(`Congratulation u levelled up`)
     }
   }
 
@@ -92,33 +110,38 @@ const Card = (props) => {
       showAlert()
     }
   }
+  console.log(status, 'handle clcik')
 
   return (
     <TouchableOpacity
-      disabled={!status}
+      disabled={ !status || !statusMyMission } // true -> false(bisa diclick) , true -> false (true)
       onPress={handlePickMission}
       style={styles.container}
-    >
-      <Text>{props.mission.title}</Text>
-      {props.type !== 'Home' ? (
-        <View style={styles.checkbox}>
-          {props.mission.isTaken ? (
-            <Image source={ceklis} style={{ width: 20, height: 20 }} />
-          ) : null}
+      >
+        <View style={styles.container}>
+          <View style={{ width: "90%" }}>
+            <Text>{props.mission.title}</Text>
+          </View>
+            {props.type !== 'Home' ? (
+              <View style={styles.checkbox}>
+                {props.mission.isTaken ? (
+                  <Image source={ceklis} style={{ width: 20, height: 20 }} />
+                ) : null}
+              </View>
+            ) : null}
         </View>
-      ) : null}
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '80%',
+    width: '100%',
     minHeight: 80,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: '#c7cfb7',
     marginVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 10,

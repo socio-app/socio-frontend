@@ -105,7 +105,9 @@ const styles = StyleSheet.create({
     left: 10,
   },
 
-  input: {},
+  input: {
+    width: "100%"
+  },
 
   TextInput: {
     borderRadius: 7,

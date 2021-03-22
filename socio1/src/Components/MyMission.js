@@ -37,7 +37,7 @@ export default function MyMission(props) {
             mode="contained"
             onPress={() => props.handleChangePage('MissionList')}
           >
-            <FontAwesome name="plus" size={30} color={'#e45826'} />
+            <FontAwesome name="plus" size={20} color={'white'} />
           </Button>
         </View>
       </View>
@@ -67,12 +67,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: '#7fdbda',
-
+    backgroundColor: 'green',
     justifyContent: 'center',
     marginTop: 50,
-    borderRadius: 30,
-    width: 50,
+    borderRadius: 50,
+    width: "35%",
   },
   buttoncover: {
     alignItems: 'center',

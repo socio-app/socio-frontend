@@ -40,7 +40,9 @@ export default function Header() {
       </View>
       <View style={styles.progressBar}>
         {/* <Avatar.Text size={45} label="ProgressBar" /> */}
-        <Text style={styles.textLevel}>Exp {user?.currentExperience} / 10</Text>
+        <View style={styles.textLevel}>
+          <Text>Exp {user?.currentExperience} / 10</Text>
+        </View>
         <ProgressBar
           progress={(user?.currentExperience / 10) * 1.5}
           color={Colors.red800}
@@ -48,7 +50,7 @@ export default function Header() {
         />
       </View>
       <View style={styles.level}>
-        <Avatar.Text size={42} label={user?.level} />
+        <Avatar.Text size={42} label={user?.level} style={{ backgroundColor: "#dddddd" }} />
       </View>
     </View>
   )
@@ -65,11 +67,11 @@ const styles = StyleSheet.create({
   },
   avatar: {
     justifyContent: 'center',
-    marginLeft: '0%',
+    left: 15
   },
   level: {
     justifyContent: 'center',
-
+    right: 15,
     marginLeft: '25%',
   },
   progressBar: {
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textLevel: {
-    marginLeft: '58%',
     paddingBottom: 5,
+    left: "50%"
   },
 })
