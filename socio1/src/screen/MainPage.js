@@ -61,6 +61,7 @@ export default function MainPage(props) {
             height: '100%',
             alignItems: 'center',
           }}
+          blurRadius= {1.5}
           resizeMode={'stretch'}
         >
           <View style={styles.logo}>
@@ -69,8 +70,7 @@ export default function MainPage(props) {
               style={{
                 width: '100%',
                 height: '100%',
-
-                // marginLeft: '11%',
+                alignItems: 'center',
               }}
               resizeMode={'stretch'}
             />
@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 1,
     shadowRadius: 2.62,
+    right: 2
     // elevation: 2,
   },
   tabbar: {
@@ -173,6 +174,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
+    left: 10,
+
 
     borderColor: '#f2f2f2',
     shadowColor: '#000',

@@ -128,7 +128,9 @@ const styles = StyleSheet.create({
     transform: [{ translateY: -10 }],
     left: 10,
   },
-  input: {},
+  input: {
+    width: "100%"
+  },
   TextInput: {
     borderRadius: 7,
     paddingLeft: 50,

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import {
   StyleSheet,
   Easing,
@@ -22,7 +22,8 @@ import { Button, Card, Title, Paragraph } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
 
 import Header from "./HeaderComponents";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useFocusEffect } from "@react-navigation/core";
 
 export default function Donut({
   percentage = 75,
@@ -37,13 +38,19 @@ export default function Donut({
   const inputRef = React.useRef();
   const halfCircle = radius + strokeWidth;
   const circleCircumference = 2 * Math.PI * radius;
-  console.log(circleCircumference * (1 - 5 / 10))
   const user = useSelector((state) => state.user.user)
+  const [persentase, setPersentase] = useState(0)
+  const [totalMission, setTotalMission] = useState(0)
+  const dispatch = useDispatch()
 
-  let persentase = user?.statistic?.totalSuccessMissions / user?.statistic?.totalMissions
-  if (!persentase) {
-    persentase = 0
-  }
+  useFocusEffect(
+    useCallback(() => {
+      console.log(user?.statistic?.totalSuccessMissions, user?.statistic?.totalMissions, 'hasil itung')
+      setPersentase(user?.statistic?.totalSuccessMissions / user?.statistic?.totalMissions)
+      // setTotalMission(user?.statistic?.totalMissions)
+    }, [user.statistic])
+  )
+  console.log(persentase, 'setelah usefocuseffect')
 
   let lastTime = new Date(user?.lastOnline).getTime()
   let firstTime = new Date(user?.createdAt).getTime()
@@ -57,9 +64,7 @@ export default function Donut({
 
   return (
     <View style={styles.containerOut}>
-      <Card style={styles.card1}>
-        <Title>Statistic</Title>
-      </Card>
+      <Title style={{ fontSize: 30 }}>Statistic</Title>
       <TouchableWithoutFeedback onPress={_onPress}>
         <Animatable.View ref={AnimationRef} animation="zoomIn">
           <View
@@ -89,7 +94,7 @@ export default function Donut({
                   r={radius}
                   fill="transparent"
                   strokeDasharray={circleCircumference}
-                  strokeDashoffset={circleCircumference * (1 - persentase)}
+                  strokeDashoffset={ persentase ? circleCircumference * (1 - persentase) : circleCircumference}
                   strokeLinecap="round"
                 />
               </G>
@@ -106,22 +111,25 @@ export default function Donut({
         </Animatable.View>
       </TouchableWithoutFeedback>
 
-      <View style={styles.viewcard1}>
+      {/* <View style={styles.viewcard1}>
         <Card style={styles.card2}>
           <Animatable.View animation="bounceInLeft">
-          {/* console.log(Math.ceil((y - x)/ (1000 * 60 * 60 * 24))) */}
-            <Title style={styles.cardTitle}>Total Played Days: {Math.ceil((firstTime - lastTime) / (1000 * 60 * 60 * 24))} </Title>
+            <Title style={styles.cardTitle}>Total Played Days: {Math.floor((lastTime - firstTime) / (1000 * 60 * 60 * 24)) + 1} days </Title>
           </Animatable.View>
         </Card>
       </View>
 
       <View style={styles.viewcard2}>
         <Card style={styles.card2}>
-          {/* <Card.Title title="Total Mission: " style={styles.cardTitle} /> */}
-          <Title style={styles.cardTitle}>Total Mission: {user?.statistic.totalMissions}  </Title>
+          <Title style={styles.cardTitle}>Total Mission: {user?.statistic?.totalMissions}  </Title>
         </Card>
+      </View> */}
+      <View>
+        <Title style={styles.cardTitle}>Total Played Days : {Math.floor((lastTime - firstTime) / (1000 * 60 * 60 * 24)) + 1} days </Title>
       </View>
-
+      <View>
+        <Title style={styles.cardTitle}>Total Mission : {user?.statistic?.totalMissions}  </Title>
+      </View>
     </View>
   );
 }
@@ -144,11 +152,12 @@ const styles = StyleSheet.create({
   containerOut: {
     alignItems: "center",
     height: "100%",
-    marginTop: 17,
+    marginTop: 50,
     fontFamily: "arcadeclassic",
   },
   cardTitle: {
     fontFamily: "arcadeclassic",
+    textAlign: "justify"
   },
   container: {
     position: "relative",
@@ -156,13 +165,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "transparent",
     flexDirection: "row",
+    marginBottom: 20
   },
   text: {
     textAlign: "center",
     width: "100%",
-    // top: "50%",
-    // left: "50%",
-    // transform: [{ translateY: -10 }],
   },
   chart: {
     position: "absolute",
@@ -171,6 +178,7 @@ const styles = StyleSheet.create({
   },
   card1: {
     width: "80%",
+    marginBottom: 20,
     alignItems: "center",
     shadowColor: "red",
     shadowOffset: {
@@ -179,13 +187,14 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 5,
     shadowRadius: 3.5,
-    backgroundColor: "white",
+    backgroundColor: "#b4a5a5",
   },
   cardTitle: {
     left: 10
   },
   card2: {
     width: "80%",
+    marginBottom: 10,
     alignItems: "flex-start",
     shadowColor: "red",
     shadowOffset: {
@@ -194,7 +203,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 5,
     shadowRadius: 3.5,
-    backgroundColor: "white",
+    backgroundColor: "#d3e0ea",
   },
   card3: {
     width: "100%",

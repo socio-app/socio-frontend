@@ -80,11 +80,14 @@ const Boxes = (props) => {
     <View style={styles.container}>
       {userLocal.name ? (
         <View style={styles.container}>
-          <Title style={{ marginTop: 20 }}>List Mission</Title>
           <Title style={{ marginTop: 20 }}>
+            List Mission ( {userLocal.activeMissions.length}/
+            {userLocal.maxActiveMissions} )
+          </Title>
+          {/* <Title style={{ marginTop: 20 }}>
             Max : {userLocal.activeMissions.length}/
             {userLocal.maxActiveMissions}
-          </Title>
+          </Title> */}
           <View style={styles.box}>
             <FlatList
               data={userLocal.missionPool}
@@ -148,7 +151,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 50,
     borderRadius: 50,
-    width: 50,
+    width: "50%",
   },
   buttoncover: {
     alignItems: 'center',

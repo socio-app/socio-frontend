@@ -8,26 +8,29 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { Button, Title } from 'react-native-paper'
-import Card from './Card'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import CardWithPhoto from './CongratulationCard'
+import { Card, ListItem, Icon } from "react-native-elements";
 
 export default function Congratulation() {
   const user = useSelector((state) => state.user.user)
 
   return (
     <View style={styles.container}>
-      <Title style={{ fontFamily: 'Roboto' }}>
-        Congratulation You have clear your mission
-      </Title>
+      <Card.Title>
+        Congratulation For all Positive things you've done, keep spreading good
+        vibes for better humanity -Socio-
+      </Card.Title>
       <View style={styles.box}>
         <FlatList
           data={user.activeMissions}
           renderItem={(data) => (
             <View style={styles.inner}>
               <View style={styles.cardContainer}>
-                <Text>{data.item.title}</Text>
+                {/* <Text>{data.item.title}</Text> */}
+                <CardWithPhoto data={data.item}/>
               </View>
             </View>
           )}
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: '#374045',
     marginVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 10,
