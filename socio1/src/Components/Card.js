@@ -33,12 +33,15 @@ const Card = (props) => {
   )
 
   useEffect(() => {
+    if (props.isPhotoSelected) updateMissionCard()
+  }, [props.isPhotoSelected])
+
+  useEffect(() => {
     if (props.mission.isFinished) setMyMission(!props.mission.isFinished)
   }, [props.mission])
 
   const updateMission = () => {
     props.setModalVisible(true)
-    props.setUpdateHandler(updateMissionCard)
   }
 
   const updateMissionCard = () => {
@@ -71,6 +74,7 @@ const Card = (props) => {
           activeMission_Id: props.mission._id,
         })
       )
+      props.setIsPhotoSelected(false)
     } else {
       console.log('dispatch levelUp')
       dispatch(
@@ -93,6 +97,7 @@ const Card = (props) => {
         })
       )
       alert(`Congratulation u levelled up`)
+      props.setIsPhotoSelected(false)
     }
   }
 

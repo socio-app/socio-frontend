@@ -10,15 +10,15 @@ export default function MyMission(props) {
   const user = useSelector((state) => state.user.user)
   const [modalVisible, setModalVisible] = useState(false)
 
-  let updateHandler
+  let updateHandler = () => {
+    setIsPhotoSelected(true)
+  }
 
   const handlePickMission = (_id) => {
     console.log(_id, 'dari Home')
   }
 
-  const setUpdateHandler = (cb) => {
-    updateHandler = cb
-  }
+  const [isPhotoSelected, setIsPhotoSelected] = useState(false)
 
   return (
     <View style={styles.container}>
@@ -36,8 +36,9 @@ export default function MyMission(props) {
               <Card
                 mission={data.item}
                 handlePickMission={(_id) => handlePickMission(_id)}
-                setUpdateHandler={setUpdateHandler}
                 setModalVisible={setModalVisible}
+                isPhotoSelected={isPhotoSelected}
+                setIsPhotoSelected={setIsPhotoSelected}
                 type="Home"
               />
             </View>
