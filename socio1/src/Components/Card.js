@@ -25,12 +25,8 @@ const Card = (props) => {
 
   const imageUri = useSelector((state) => state.image.imageUri);
 
-<<<<<<< HEAD
   console.log(props.mission.isFinished, "tanda mission props");
-=======
-  console.log(props.mission.isFinished, 'tanda mission props')
-  console.log(props.mission, '')
->>>>>>> origin/development
+  console.log(props.mission, "");
 
   useFocusEffect(
     useCallback(() => {
@@ -39,38 +35,28 @@ const Card = (props) => {
   );
 
   useEffect(() => {
-<<<<<<< HEAD
-    if (props.isPhotoSelected) updateMissionCard();
-  }, [props.isPhotoSelected]);
-=======
-    if (props.type === 'Home') {
-      console.log(props.isPhotoSelected.isPhotoSelectedStatus)
-      console.log(props.isPhotoSelected.missionId)
+    if (props.type === "Home") {
+      console.log(props.isPhotoSelected.isPhotoSelectedStatus);
+      console.log(props.isPhotoSelected.missionId);
       if (
         props.isPhotoSelected.isPhotoSelectedStatus &&
         props.isPhotoSelected.missionId === props.mission._id
       )
-        updateMissionCard()
+        updateMissionCard();
     }
-  }, [props.isPhotoSelected])
->>>>>>> origin/development
+  }, [props.isPhotoSelected]);
 
   useEffect(() => {
     if (props.mission.isFinished) setMyMission(!props.mission.isFinished);
   }, [props.mission]);
 
   const updateMission = () => {
-<<<<<<< HEAD
     props.setModalVisible(true);
-  };
-=======
-    props.setModalVisible(true)
     props.setIsPhotoSelected({
       ...props.isPhotoSelected,
       missionId: props.mission._id,
-    })
-  }
->>>>>>> origin/development
+    });
+  };
 
   const updateMissionCard = () => {
     console.log("Going to finish mission");
@@ -101,12 +87,7 @@ const Card = (props) => {
           imageUri: imageUri,
           activeMission_Id: props.mission._id,
         })
-<<<<<<< HEAD
       );
-      props.setIsPhotoSelected(false);
-=======
-      )
->>>>>>> origin/development
     } else {
       console.log("dispatch levelUp");
       dispatch(
@@ -128,23 +109,15 @@ const Card = (props) => {
           imageUri: imageUri,
           activeMission_Id: props.mission._id,
         })
-<<<<<<< HEAD
       );
       alert(`Congratulation u levelled up`);
-      props.setIsPhotoSelected(false);
-    }
-  };
-=======
-      )
-      alert(`Congratulation u levelled up`)
     }
     props.setIsPhotoSelected({
       ...props.isPhotoSelected,
       isPhotoSelectedStatus: false,
-      missionId: '',
-    })
-  }
->>>>>>> origin/development
+      missionId: "",
+    });
+  };
 
   const showAlert = () =>
     Alert.alert("Confirmation on your Mission", "Sudah selesaikah ?", [
