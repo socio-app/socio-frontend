@@ -56,9 +56,15 @@ export default function CameraModal(props) {
 
       setImageUri("");
 
+<<<<<<< HEAD
       props.setModalVisible(false);
 
       props.updateHandler();
+=======
+      props.updateHandler()
+
+      props.setModalVisible(false)
+>>>>>>> origin/development
     } catch (err) {
       console.log(err);
     }

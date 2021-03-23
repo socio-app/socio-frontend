@@ -11,14 +11,20 @@ export default function MyMission(props) {
   const [modalVisible, setModalVisible] = useState(false)
 
   let updateHandler = () => {
-    setIsPhotoSelected(true)
+    setIsPhotoSelected({
+      ...isPhotoSelected,
+      isPhotoSelectedStatus: true,
+    })
   }
 
   const handlePickMission = (_id) => {
     console.log(_id, 'dari Home')
   }
 
-  const [isPhotoSelected, setIsPhotoSelected] = useState(false)
+  const [isPhotoSelected, setIsPhotoSelected] = useState({
+    isPhotoSelectedStatus: false,
+    missionId: '',
+  })
 
   return (
     <View style={styles.container}>
