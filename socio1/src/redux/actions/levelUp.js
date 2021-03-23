@@ -19,23 +19,21 @@ export const levelUp = (payload) => async (dispatch) => {
         activeMissions: payload.activeMissions,
         statistic: payload.statistic,
         currentExperience: payload.currentExperience,
-        activeMission_Id: payload.activeMission_Id,
         level: payload.level,
         maxActiveMissions: payload.maxActiveMissions,
+        activeMission_Id: payload.activeMission_Id,
       })
     )
 
     const resetUser = await axios({
       url: `/users/${payload._id}/levelUp`,
       method: 'PATCH',
-      headers: { access_token: payload.access_token },
-      data: {
-        activeMissions: payload.activeMissions,
-        statistic: payload.statistic,
-        currentExperience: payload.currentExperience,
-        level: payload.level,
-        maxActiveMissions: payload.maxActiveMissions,
+      headers: {
+        access_token: payload.access_token,
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
       },
+      data: formData,
     })
 
     console.log(resetUser.data.user)

@@ -106,6 +106,7 @@ const Card = (props) => {
             totalSuccessMissions: user.statistic.totalSuccessMissions + 1,
           },
           imageUri: imageUri,
+          activeMission_Id: props.mission._id,
         })
       )
       alert(`Congratulation u levelled up`)
