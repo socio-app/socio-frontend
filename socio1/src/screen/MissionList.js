@@ -13,7 +13,7 @@ export default function MissionList(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const access_token = useSelector((state) => state.user.access_token);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisibleDetail, setModalVisibleDetail] = useState(false);
 
   const handleChangePage = (value) => {
     props.navigation.navigate(value);
@@ -22,8 +22,8 @@ export default function MissionList(props) {
   return (
     <View style={styles.container}>
       <MissionDetail
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
+        modalVisibleDetail={modalVisibleDetail}
+        setModalVisibleDetail={setModalVisibleDetail}
       />
       <ImageBackground
         source={require("../../src/assets/backgroundburung.png")}
@@ -32,8 +32,8 @@ export default function MissionList(props) {
       >
         <Headers />
         <BoxesCard
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
+          modalVisibleDetail={modalVisibleDetail}
+          setModalVisibleDetail={setModalVisibleDetail}
           handleChangePage={(value) => handleChangePage(value)}
           user={user}
         />

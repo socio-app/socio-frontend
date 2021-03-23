@@ -16,17 +16,17 @@ import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
 export default function MissionDetail(props) {
   // const [modalVisible, setModalVisible] = useState(false);
-
+  console.log(props.modalVisibleDetail, "<<<< INI MODAL VISIBLE DETAIL");
   return (
     <>
       <View style={styles.centeredView}>
         <Modal
           animationType="slide"
           transparent={true}
-          visible={props.modalVisible}
+          visible={props.modalVisibleDetail}
           onRequestClose={() => {
             Alert.alert("Modal has been closed.");
-            props.setModalVisible(!props.modalVisible);
+            props.setModalVisibleDetail(!props.modalVisibleDetail);
           }}
         >
           <View style={styles.centeredView}>
@@ -53,7 +53,9 @@ export default function MissionDetail(props) {
               </Card>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => props.setModalVisible(!props.modalVisible)}
+                onPress={() =>
+                  props.setModalVisibleDetail(!props.modalVisibleDetail)
+                }
               >
                 <Text style={styles.textStyle}>Close</Text>
               </Pressable>

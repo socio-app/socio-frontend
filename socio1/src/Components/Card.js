@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  Button,
 } from "react-native";
 import ceklis from "../assets/ceklis.png";
 
@@ -140,11 +141,18 @@ const Card = (props) => {
 
   const handleDetail = () => {
     if (props.type != "Home") {
-      props.setModalVisible(true);
+      props.setModalVisibleDetail(true);
     } else {
       showAlert();
     }
   };
+
+  const handleDetailHome = () => {
+    console.log("MASUUKK SINI BOUSSSSS Handle visible");
+    props.setModalVisibleDetail(true);
+  };
+
+  console.log(props.modalVisibleDetail, "ini modal visible detai doang");
 
   return (
     <>
@@ -163,7 +171,16 @@ const Card = (props) => {
                   <Image source={ceklis} style={{ width: 20, height: 20 }} />
                 ) : null}
               </View>
-            ) : null}
+            ) : (
+              <View style={styles.buttonDetail}>
+                <Button
+                  style={styles.buttonDetail2}
+                  title="Detail"
+                  onPress={handleDetailHome}
+                  color="green"
+                />
+              </View>
+            )}
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
@@ -189,6 +206,13 @@ const styles = StyleSheet.create({
     height: 25,
     justifyContent: "center",
     alignItems: "center",
+  },
+  buttonDetail: {
+    right: 20,
+    borderRadius: 200,
+  },
+  buttonDetail2: {
+    color: "green",
   },
 });
 

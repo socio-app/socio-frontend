@@ -97,8 +97,8 @@ const Boxes = (props) => {
                     handlePickMission={(_id, cb) => handlePickMission(_id, cb)}
                     mission={data.item}
                     isTaken={data.item.isTaken}
-                    modalVisible={props.modalVisible}
-                    setModalVisible={props.setModalVisible}
+                    modalVisibleDetail={props.modalVisibleDetail}
+                    setModalVisibleDetail={props.setModalVisibleDetail}
                     type="MissionList"
                   />
                 </View>
