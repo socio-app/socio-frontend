@@ -1,6 +1,7 @@
 const initialState = {
   user: {},
   access_token: '',
+  setExpIncrease: {},
 }
 
 export const userReducer = (state = initialState, action) => {

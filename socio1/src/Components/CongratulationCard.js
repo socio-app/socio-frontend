@@ -1,36 +1,39 @@
-import React from "react";
-import { View, StyleSheet, Text, Image, FlatList } from "react-native";
-import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
+import React from 'react'
+import { View, StyleSheet, Text, Image, FlatList } from 'react-native'
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper'
 
 const CardWithPhoto = (props) => {
   return (
-    <View style={{ width: "100%" }}>
+    <View style={{ width: '100%' }}>
       <Card style={styles.container}>
-        <Card.Content style={{ alignItems: "center"}}>
+        <Card.Content style={{ alignItems: 'center' }}>
           <Title style={styles.Title}>{props.data.title}</Title>
-          <View style={{ alignItems:"center" }}>
+          <View style={{ alignItems: 'center' }}>
             <Paragraph>Deksripsi: ......</Paragraph>
           </View>
         </Card.Content>
-        <Card.Cover source={{ uri: "https://picsum.photos/700" }} style={{ borderRadius: 15 }} />
-        <View style={{ alignItems:"center" }}>
-          <Card.Actions >
+        <Card.Cover
+          source={{ uri: props.data.imageUri }}
+          style={{ borderRadius: 15 }}
+        />
+        <View style={{ alignItems: 'center' }}>
+          <Card.Actions>
             <Button>Cancel</Button>
             <Button>Ok</Button>
-          </Card.Actions>  
+          </Card.Actions>
         </View>
       </Card>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: '100%',
     minHeight: 80,
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
     marginVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 10,
@@ -40,12 +43,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: 25,
     height: 25,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   Title: {
-    alignItems: "center",
+    alignItems: 'center',
   },
-});
+})
 
-export default CardWithPhoto;
+export default CardWithPhoto

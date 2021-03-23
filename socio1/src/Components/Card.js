@@ -21,6 +21,9 @@ const Card = (props) => {
 
   const user = useSelector((state) => state.user.user)
   const access_token = useSelector((state) => state.user.access_token)
+
+  const imageUri = useSelector((state) => state.image.imageUri)
+
   console.log(props.mission.isFinished, 'tanda mission props')
 
   useFocusEffect(
@@ -33,15 +36,12 @@ const Card = (props) => {
     if (props.mission.isFinished) setMyMission(!props.mission.isFinished)
   }, [props.mission])
 
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     console.log(user?.statistic?.totalSuccessMissions, user?.statistic?.totalMissions, 'hasil itung')
-  //     setPersentase(user?.statistic?.totalSuccessMissions / user?.statistic?.totalMissions)
-  //     // setTotalMission(user?.statistic?.totalMissions)
-  //   }, [user.statistic])
-  // )
-
   const updateMission = () => {
+    props.setModalVisible(true)
+    props.setUpdateHandler(updateMissionCard)
+  }
+
+  const updateMissionCard = () => {
     console.log('Going to finish mission')
 
     let tempActiveMissions = JSON.parse(JSON.stringify(user.activeMissions))
@@ -51,6 +51,8 @@ const Card = (props) => {
         el.isFinished = true
       }
     })
+
+    console.log(imageUri, 'IMAGE URI FROM CARD')
 
     if (+user.currentExperience + +props.mission.experience < 10) {
       console.log('dispatch expIncrease')
@@ -65,6 +67,8 @@ const Card = (props) => {
             ...user.statistic,
             totalSuccessMissions: user.statistic.totalSuccessMissions + 1,
           },
+          imageUri: imageUri,
+          activeMission_Id: props.mission._id,
         })
       )
     } else {
@@ -85,6 +89,7 @@ const Card = (props) => {
             ...user.statistic,
             totalSuccessMissions: user.statistic.totalSuccessMissions + 1,
           },
+          imageUri: imageUri,
         })
       )
       alert(`Congratulation u levelled up`)
@@ -113,24 +118,26 @@ const Card = (props) => {
   console.log(status, 'handle clcik')
 
   return (
-    <TouchableOpacity
-      disabled={ !status || !statusMyMission } // true -> false(bisa diclick) , true -> false (true)
-      onPress={handlePickMission}
-      style={styles.container}
+    <>
+      <TouchableOpacity
+        disabled={!status || !statusMyMission} // true -> false(bisa diclick) , true -> false (true)
+        onPress={handlePickMission}
+        style={styles.container}
       >
         <View style={styles.container}>
-          <View style={{ width: "90%" }}>
+          <View style={{ width: '90%' }}>
             <Text>{props.mission.title}</Text>
           </View>
-            {props.type !== 'Home' ? (
-              <View style={styles.checkbox}>
-                {props.mission.isTaken ? (
-                  <Image source={ceklis} style={{ width: 20, height: 20 }} />
-                ) : null}
-              </View>
-            ) : null}
+          {props.type !== 'Home' ? (
+            <View style={styles.checkbox}>
+              {props.mission.isTaken ? (
+                <Image source={ceklis} style={{ width: 20, height: 20 }} />
+              ) : null}
+            </View>
+          ) : null}
         </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </>
   )
 }
 

@@ -4,16 +4,29 @@ import { Button, Title } from 'react-native-paper'
 import Card from './Card'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useDispatch, useSelector } from 'react-redux'
+import CameraModal from './CameraModal'
 
 export default function MyMission(props) {
   const user = useSelector((state) => state.user.user)
+  const [modalVisible, setModalVisible] = useState(false)
+
+  let updateHandler
 
   const handlePickMission = (_id) => {
     console.log(_id, 'dari Home')
   }
 
+  const setUpdateHandler = (cb) => {
+    updateHandler = cb
+  }
+
   return (
     <View style={styles.container}>
+      <CameraModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        updateHandler={updateHandler}
+      />
       <Title>Your Mission</Title>
       <View style={styles.box}>
         <FlatList
@@ -23,6 +36,8 @@ export default function MyMission(props) {
               <Card
                 mission={data.item}
                 handlePickMission={(_id) => handlePickMission(_id)}
+                setUpdateHandler={setUpdateHandler}
+                setModalVisible={setModalVisible}
                 type="Home"
               />
             </View>
@@ -71,7 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 50,
     borderRadius: 50,
-    width: "35%",
+    width: '35%',
   },
   buttoncover: {
     alignItems: 'center',
