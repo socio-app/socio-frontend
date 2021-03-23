@@ -25,7 +25,6 @@ export const expIncrease = (payload) => async (dispatch) => {
 
     const resetUser = await axios({
       url: `/users/${payload._id}/expIncrease`,
-      // url: `/images/`,
       method: 'PATCH',
       headers: {
         access_token: payload.access_token,

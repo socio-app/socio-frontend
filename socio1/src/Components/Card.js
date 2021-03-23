@@ -25,6 +25,7 @@ const Card = (props) => {
   const imageUri = useSelector((state) => state.image.imageUri)
 
   console.log(props.mission.isFinished, 'tanda mission props')
+  console.log(props.mission, '')
 
   useFocusEffect(
     useCallback(() => {
@@ -33,7 +34,15 @@ const Card = (props) => {
   )
 
   useEffect(() => {
-    if (props.isPhotoSelected) updateMissionCard()
+    if (props.type === 'Home') {
+      console.log(props.isPhotoSelected.isPhotoSelectedStatus)
+      console.log(props.isPhotoSelected.missionId)
+      if (
+        props.isPhotoSelected.isPhotoSelectedStatus &&
+        props.isPhotoSelected.missionId === props.mission._id
+      )
+        updateMissionCard()
+    }
   }, [props.isPhotoSelected])
 
   useEffect(() => {
@@ -42,6 +51,10 @@ const Card = (props) => {
 
   const updateMission = () => {
     props.setModalVisible(true)
+    props.setIsPhotoSelected({
+      ...props.isPhotoSelected,
+      missionId: props.mission._id,
+    })
   }
 
   const updateMissionCard = () => {
@@ -74,7 +87,6 @@ const Card = (props) => {
           activeMission_Id: props.mission._id,
         })
       )
-      props.setIsPhotoSelected(false)
     } else {
       console.log('dispatch levelUp')
       dispatch(
@@ -97,8 +109,12 @@ const Card = (props) => {
         })
       )
       alert(`Congratulation u levelled up`)
-      props.setIsPhotoSelected(false)
     }
+    props.setIsPhotoSelected({
+      ...props.isPhotoSelected,
+      isPhotoSelectedStatus: false,
+      missionId: '',
+    })
   }
 
   const showAlert = () =>

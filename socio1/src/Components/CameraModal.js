@@ -55,9 +55,9 @@ export default function CameraModal(props) {
 
       setImageUri('')
 
-      props.setModalVisible(false)
-
       props.updateHandler()
+
+      props.setModalVisible(false)
     } catch (err) {
       console.log(err)
     }
