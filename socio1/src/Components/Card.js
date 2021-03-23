@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   StyleSheet,
@@ -6,59 +6,60 @@ import {
   Image,
   TouchableOpacity,
   Alert,
-} from 'react-native'
-import ceklis from '../assets/ceklis.png'
+} from "react-native";
+import ceklis from "../assets/ceklis.png";
 
-import { useSelector, useDispatch } from 'react-redux'
-import { expIncrease } from '../redux/actions/expIncrease'
-import { levelUp } from '../redux/actions/levelUp'
-import { useFocusEffect } from '@react-navigation/core'
+import { useSelector, useDispatch } from "react-redux";
+import { expIncrease } from "../redux/actions/expIncrease";
+import { levelUp } from "../redux/actions/levelUp";
+import { useFocusEffect } from "@react-navigation/core";
+import MissionDetail from "../Components/MissionDetail";
 
 const Card = (props) => {
-  const dispatch = useDispatch()
-  const [status, setStatus] = useState(true)
-  const [statusMyMission, setMyMission] = useState(true)
+  const dispatch = useDispatch();
+  const [status, setStatus] = useState(true);
+  const [statusMyMission, setMyMission] = useState(true);
 
-  const user = useSelector((state) => state.user.user)
-  const access_token = useSelector((state) => state.user.access_token)
+  const user = useSelector((state) => state.user.user);
+  const access_token = useSelector((state) => state.user.access_token);
 
-  const imageUri = useSelector((state) => state.image.imageUri)
+  const imageUri = useSelector((state) => state.image.imageUri);
 
-  console.log(props.mission.isFinished, 'tanda mission props')
+  console.log(props.mission.isFinished, "tanda mission props");
 
   useFocusEffect(
     useCallback(() => {
-      if (props.isTaken) setStatus(!props.isTaken)
+      if (props.isTaken) setStatus(!props.isTaken);
     }, [])
-  )
+  );
 
   useEffect(() => {
-    if (props.isPhotoSelected) updateMissionCard()
-  }, [props.isPhotoSelected])
+    if (props.isPhotoSelected) updateMissionCard();
+  }, [props.isPhotoSelected]);
 
   useEffect(() => {
-    if (props.mission.isFinished) setMyMission(!props.mission.isFinished)
-  }, [props.mission])
+    if (props.mission.isFinished) setMyMission(!props.mission.isFinished);
+  }, [props.mission]);
 
   const updateMission = () => {
-    props.setModalVisible(true)
-  }
+    props.setModalVisible(true);
+  };
 
   const updateMissionCard = () => {
-    console.log('Going to finish mission')
+    console.log("Going to finish mission");
 
-    let tempActiveMissions = JSON.parse(JSON.stringify(user.activeMissions))
+    let tempActiveMissions = JSON.parse(JSON.stringify(user.activeMissions));
 
     tempActiveMissions.forEach((el) => {
       if (el._id === props.mission._id) {
-        el.isFinished = true
+        el.isFinished = true;
       }
-    })
+    });
 
-    console.log(imageUri, 'IMAGE URI FROM CARD')
+    console.log(imageUri, "IMAGE URI FROM CARD");
 
     if (+user.currentExperience + +props.mission.experience < 10) {
-      console.log('dispatch expIncrease')
+      console.log("dispatch expIncrease");
       dispatch(
         expIncrease({
           _id: user._id,
@@ -73,10 +74,10 @@ const Card = (props) => {
           imageUri: imageUri,
           activeMission_Id: props.mission._id,
         })
-      )
-      props.setIsPhotoSelected(false)
+      );
+      props.setIsPhotoSelected(false);
     } else {
-      console.log('dispatch levelUp')
+      console.log("dispatch levelUp");
       dispatch(
         levelUp({
           _id: user._id,
@@ -95,65 +96,72 @@ const Card = (props) => {
           },
           imageUri: imageUri,
         })
-      )
-      alert(`Congratulation u levelled up`)
-      props.setIsPhotoSelected(false)
+      );
+      alert(`Congratulation u levelled up`);
+      props.setIsPhotoSelected(false);
     }
-  }
+  };
 
   const showAlert = () =>
-    Alert.alert('Confirmation on your Mission', 'Sudah selesaikah ?', [
+    Alert.alert("Confirmation on your Mission", "Sudah selesaikah ?", [
       {
-        text: 'Cancel',
+        text: "Cancel",
       },
       {
-        text: 'Ok',
+        text: "Ok",
         onPress: () => updateMission(),
       },
-    ])
+    ]);
 
   const handlePickMission = () => {
     // props.handlePickMission(props.mission._id)
-    if (props.type !== 'Home') {
-      props.handlePickMission(props.mission._id, setStatus)
-    } else {
-      showAlert()
+    if (props.type !== "Home") {
+      props.handlePickMission(props.mission._id, setStatus);
     }
-  }
-  console.log(status, 'handle clcik')
+  };
+  console.log(status, "handle clcik");
+
+  const handleDetail = () => {
+    if (props.type != "Home") {
+      props.setModalVisible(true);
+    } else {
+      showAlert();
+    }
+  };
 
   return (
     <>
-      <TouchableOpacity
-        disabled={!status || !statusMyMission} // true -> false(bisa diclick) , true -> false (true)
-        onPress={handlePickMission}
-        style={styles.container}
-      >
+      <TouchableOpacity style={styles.container} onPress={handleDetail}>
         <View style={styles.container}>
-          <View style={{ width: '90%' }}>
+          <View style={{ width: "90%" }}>
             <Text>{props.mission.title}</Text>
           </View>
-          {props.type !== 'Home' ? (
-            <View style={styles.checkbox}>
-              {props.mission.isTaken ? (
-                <Image source={ceklis} style={{ width: 20, height: 20 }} />
-              ) : null}
-            </View>
-          ) : null}
+          <TouchableOpacity
+            disabled={!status || !statusMyMission} // true -> false(bisa diclick) , true -> false (true)
+            onPress={handlePickMission}
+          >
+            {props.type !== "Home" ? (
+              <View style={styles.checkbox}>
+                {props.mission.isTaken ? (
+                  <Image source={ceklis} style={{ width: 20, height: 20 }} />
+                ) : null}
+              </View>
+            ) : null}
+          </TouchableOpacity>
         </View>
       </TouchableOpacity>
     </>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: "100%",
     minHeight: 80,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: '#c7cfb7',
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
+    backgroundColor: "#c7cfb7",
     marginVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 10,
@@ -162,9 +170,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: 25,
     height: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
-})
+});
 
-export default Card
+export default Card;
