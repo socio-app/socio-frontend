@@ -21,7 +21,7 @@ export default function Congratulation() {
     <View style={styles.container}>
       <Card.Title>
         Congratulation For all Positive things you've done, keep spreading good
-        vibes for better humanity -Socio-
+        vibes for better humanity {'\n'}-Socio-
       </Card.Title>
       <View style={styles.box}>
         <FlatList

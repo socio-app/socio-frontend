@@ -37,6 +37,7 @@ export const levelUp = (payload) => async (dispatch) => {
     })
 
     console.log(resetUser.data.user)
+    alert(`Congratulation u levelled up`)
     dispatch({ type: 'FETCH_USER', data: resetUser.data.user })
   } catch (err) {
     console.log(err)

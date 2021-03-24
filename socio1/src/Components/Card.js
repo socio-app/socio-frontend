@@ -111,7 +111,6 @@ const Card = (props) => {
           activeMission_Id: props.mission._id,
         })
       )
-      alert(`Congratulation u levelled up`)
     }
     props.setIsPhotoSelected({
       ...props.isPhotoSelected,
