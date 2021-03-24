@@ -35,10 +35,7 @@ const CardWithPhoto = (props) => {
         <Card.Content style={{ alignItems: 'center' }}>
           <Title style={styles.Title}>{props.data.title}</Title>
           <View style={{ alignItems: 'center' }}>
-            <Paragraph>
-              Deksripsi:
-              dsaihfjlkasdflkasdklcnmlkasndclkansdlkcnlaksdnclkdsnclkansdlkcnasdlkcnasldkncalks
-            </Paragraph>
+            <Paragraph>{props.data.description}</Paragraph>
           </View>
         </Card.Content>
         <Card.Cover

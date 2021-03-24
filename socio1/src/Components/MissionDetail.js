@@ -17,6 +17,9 @@ import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper'
 export default function MissionDetail(props) {
   // const [modalVisible, setModalVisible] = useState(false);
   console.log(props.modalVisibleDetail, '<<<< INI MODAL VISIBLE DETAIL')
+  useEffect(() => {
+    console.log(props.mission, '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>updated')
+  }, [props.mission])
   return (
     <>
       <View style={styles.centeredView}>
@@ -32,20 +35,20 @@ export default function MissionDetail(props) {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Title style={styles.modalText}>
-                Mission Contributor: Mr Budiman
+                Contributor: {props.mission ? props.mission.contributor : null}
               </Title>
-              <Title style={styles.Title}>Unfinished Business</Title>
-              <Text>EXP: 5</Text>
+              <Title style={styles.Title}>
+                {props.mission ? props.mission.title : null}
+              </Title>
+              <Text>
+                EXP: {props.mission ? props.mission.experience : null}
+              </Text>
               <Card style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                   <Card.Content style={{ alignItems: 'center' }}>
                     {/* <SafeAreaView style={styles.Paragraph}> */}
                     <Text>
-                      Disini bukan untuk mengungkit masa lalu tetapi memperbaiki
-                      segala kesalahan yang pernah kamu lakukan tetapi kamu
-                      belum pernah meminta maaf sebelumnya, telpon mantanmu,
-                      orang tua mu, sahabat mu atau teman mu tanyakan kabr dan
-                      minta maaf untuk kesalahan yg pernah kamu lakukan{' '}
+                      {props.mission ? props.mission.description : null}
                     </Text>
                     {/* </SafeAreaView> */}
                   </Card.Content>

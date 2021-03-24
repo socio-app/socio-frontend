@@ -15,6 +15,7 @@ export default function MissionList(props) {
   const user = useSelector((state) => state.user.user)
   const access_token = useSelector((state) => state.user.access_token)
   const [modalVisibleDetail, setModalVisibleDetail] = useState(false)
+  const [modalMission, setModalMission] = useState(null)
 
   const handleChangePage = (value) => {
     props.navigation.navigate(value)
@@ -25,6 +26,7 @@ export default function MissionList(props) {
       <MissionDetail
         modalVisibleDetail={modalVisibleDetail}
         setModalVisibleDetail={setModalVisibleDetail}
+        mission={modalMission}
       />
       <ImageBackground
         source={require('../../src/assets/sociobackgroundtester.jpg')}
@@ -36,6 +38,8 @@ export default function MissionList(props) {
           modalVisibleDetail={modalVisibleDetail}
           setModalVisibleDetail={setModalVisibleDetail}
           handleChangePage={(value) => handleChangePage(value)}
+          setModalMission={setModalMission}
+          modalMission={modalMission}
           user={user}
         />
       </ImageBackground>
