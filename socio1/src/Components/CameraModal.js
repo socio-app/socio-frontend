@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Alert,
   Modal,
@@ -9,46 +9,39 @@ import {
   View,
   TouchableOpacity,
   Image,
-  TouchableWithoutFeedback,
 } from 'react-native'
 import { Camera } from 'expo-camera'
 import axios from 'axios'
 import { setImage } from '../redux/actions/setImage'
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
-import * as Animatable from 'react-native-animatable'
+import { useFocusEffect } from '@react-navigation/core'
 
 export default function CameraModal(props) {
   const dispatch = useDispatch()
-  const [hasPermission, setHasPermission] = useState(null)
   const [imageUrlFromServer, setImageUrlFromServer] = useState('')
   const [imageUri, setImageUri] = useState('')
   const [type, setType] = useState(Camera.Constants.Type.back)
+  const hasPermission = useSelector((state) => state.image.permission)
+
+  console.log(hasPermission)
 
   const camRef = useRef(null)
-
-  const AnimationRef = useRef(null)
-  const _onPress = () => {
-    if (AnimationRef) {
-      AnimationRef.current?.()
-    }
-  }
 
   useEffect(() => {
     ;(async () => {
       const { status } = await Camera.requestPermissionsAsync()
-      setHasPermission(status === 'granted')
+
+      dispatch({ type: 'SET_PERMISSION ', data: status === 'granted' })
     })()
 
+    if (hasPermission === null) {
+      props.setModalVisible(false)
+    }
+    if (hasPermission === false) {
+      props.setModalVisible(false)
+    }
     return () => {}
   }, [])
-
-  if (hasPermission === null) {
-    props.setModalVisible(false)
-  }
-  if (hasPermission === false) {
-    props.setModalVisible(false)
-  }
 
   const takePicture = async () => {
     if (camRef) {
@@ -80,7 +73,7 @@ export default function CameraModal(props) {
       transparent={true}
       visible={props.modalVisible}
       onRequestClose={() => {
-        Alert.alert('Camera has been closed.')
+        Alert.alert('Modal has been closed.')
         props.setModalVisible(false)
       }}
     >
@@ -190,7 +183,6 @@ const styles = StyleSheet.create({
     height: 50,
     top: 10,
     width: '25%',
-
     borderRadius: 10,
   },
   textStyle: {

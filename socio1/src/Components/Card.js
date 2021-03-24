@@ -152,38 +152,23 @@ const Card = (props) => {
     props.setModalVisibleDetail(true)
   }
 
-  const NeuMorph = ({ children, size, style }) => {
-    return (
-      <View style={styles.topShadow}>
-        <View style={styles.bottomShadow}>
-          <View
-            style={[
-              styles.inner,
-              {
-                width: size || 40,
-                height: size || 40,
-                borderRadius: size / 2 || 40 / 2,
-              },
-              style,
-            ]}
-          >
-            {children}
-          </View>
-        </View>
-      </View>
-    )
-  }
+  console.log(props.modalVisibleDetail, 'ini modal visible detai doang')
 
   return (
     <>
-      <TouchableOpacity style={styles.container1} onPress={handleDetail}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={handleDetail}
+        disabled={!statusMyMission}
+      >
         <View style={styles.container}>
           <View style={{ width: '90%' }}>
-            <Text style={styles.textInput}>{props.mission.title}</Text>
+            <Text>{props.mission.title}</Text>
           </View>
 
           <TouchableOpacity
-            disabled={!status || !statusMyMission} // true -> false(bisa diclick) , true -> false (true)
+            // true -> false(bisa diclick) , true -> false (true)
+            disabled={!statusMyMission || !status}
             onPress={handlePickMission}
           >
             {props.type !== 'Home' ? (
