@@ -16,6 +16,7 @@
     "@react-navigation/stack": "^5.14.3",
     "axios": "^0.21.1",
     "expo": "~40.0.0",
+    "expo-camera": "~9.1.0",
     "expo-status-bar": "^1.0.3",
     "expo-updates": "~0.4.1",
     "react": "16.13.1",
@@ -36,6 +37,7 @@
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.15.2",
+    "react-native-share": "^5.1.6",
     "react-native-svg": "^12.1.0",
     "react-native-vector-icons": "^8.1.0",
     "react-native-vega-scroll-list": "^1.0.0",
@@ -44,7 +46,8 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "rn-fetch-blob": "^0.12.0",
-    "expo-camera": "~9.1.0"
+    "expo-sharing": "~8.5.0",
+    "expo-file-system": "~9.3.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

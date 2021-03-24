@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Alert,
   Modal,
@@ -9,60 +9,63 @@ import {
   View,
   TouchableOpacity,
   Image,
-} from "react-native";
-import { Camera } from "expo-camera";
-import axios from "axios";
-import { setImage } from "../redux/actions/setImage";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+} from 'react-native'
+import { Camera } from 'expo-camera'
+import axios from 'axios'
+import { setImage } from '../redux/actions/setImage'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { useFocusEffect } from '@react-navigation/core'
 
 export default function CameraModal(props) {
-  const dispatch = useDispatch();
-  const [hasPermission, setHasPermission] = useState(null);
-  const [imageUrlFromServer, setImageUrlFromServer] = useState("");
-  const [imageUri, setImageUri] = useState("");
-  const [type, setType] = useState(Camera.Constants.Type.back);
+  const dispatch = useDispatch()
+  const [imageUrlFromServer, setImageUrlFromServer] = useState('')
+  const [imageUri, setImageUri] = useState('')
+  const [type, setType] = useState(Camera.Constants.Type.back)
+  const hasPermission = useSelector((state) => state.image.permission)
 
-  const camRef = useRef(null);
+  console.log(hasPermission)
+
+  const camRef = useRef(null)
 
   useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === "granted");
-    })();
+    ;(async () => {
+      const { status } = await Camera.requestPermissionsAsync()
 
-    return () => {};
-  }, []);
+      dispatch({ type: 'SET_PERMISSION ', data: status === 'granted' })
+    })()
 
-  if (hasPermission === null) {
-    props.setModalVisible(false);
-  }
-  if (hasPermission === false) {
-    props.setModalVisible(false);
-  }
+    if (hasPermission === null) {
+      props.setModalVisible(false)
+    }
+    if (hasPermission === false) {
+      props.setModalVisible(false)
+    }
+    return () => {}
+  }, [])
 
   const takePicture = async () => {
     if (camRef) {
-      const data = await camRef.current.takePictureAsync({ quality: 0.3 });
-      console.log(data, "ini image baru diambil");
-      setImageUri(data.uri);
+      const data = await camRef.current.takePictureAsync({ quality: 0.3 })
+      console.log(data, 'ini image baru diambil')
+      setImageUri(data.uri)
     }
-  };
+  }
 
   const uploadPicture = async () => {
     try {
-      dispatch(setImage(imageUri));
+      dispatch(setImage(imageUri))
 
-      console.log(imageUri, ">>> IMAGE URI DARI MODAL");
+      console.log(imageUri, '>>> IMAGE URI DARI MODAL')
 
-      setImageUri("");
+      setImageUri('')
 
-      props.updateHandler();
+      props.updateHandler()
 
-      props.setModalVisible(false);
+      props.setModalVisible(false)
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   return (
     <Modal
@@ -70,13 +73,13 @@ export default function CameraModal(props) {
       transparent={true}
       visible={props.modalVisible}
       onRequestClose={() => {
-        Alert.alert("Modal has been closed.");
-        props.setModalVisible(false);
+        Alert.alert('Modal has been closed.')
+        props.setModalVisible(false)
       }}
     >
       <View style={styles.centeredView}>
         {!imageUri ? (
-          <View style={{ width: "100%", height: 400, alignItems: "center" }}>
+          <View style={{ width: '100%', height: 400, alignItems: 'center' }}>
             <Camera style={styles.camera} type={type} ref={camRef}>
               <View style={styles.buttonContainer}>
                 <TouchableOpacity
@@ -86,7 +89,7 @@ export default function CameraModal(props) {
                       type === Camera.Constants.Type.back
                         ? Camera.Constants.Type.front
                         : Camera.Constants.Type.back
-                    );
+                    )
                   }}
                 >
                   <Text style={styles.text}> Flip </Text>
@@ -111,14 +114,14 @@ export default function CameraModal(props) {
               style={{ height: 400, width: 400 }}
             />
             <TouchableOpacity
-              style={{ height: 50, width: 300, backgroundColor: "green" }}
+              style={{ height: 50, width: 300, backgroundColor: 'green' }}
               onPress={uploadPicture}
             >
               <Text>Upload!</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{ height: 50, width: 300, backgroundColor: "green" }}
-              onPress={() => setImageUri("")}
+              style={{ height: 50, width: 300, backgroundColor: 'green' }}
+              onPress={() => setImageUri('')}
             >
               <Text>Retake</Text>
             </TouchableOpacity>
@@ -126,23 +129,23 @@ export default function CameraModal(props) {
         )}
       </View>
     </Modal>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 22,
   },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -157,40 +160,40 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    backgroundColor: '#F194FF',
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: '#2196F3',
   },
   buttonContainer: {
     flex: 1,
-    backgroundColor: "transparent",
-    flexDirection: "row",
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
     margin: 20,
-    width: "100%",
+    width: '100%',
   },
   takePictureButton: {
-    alignItems: "center",
+    alignItems: 'center',
     height: 50,
     top: 10,
-    width: "25%",
-    backgroundColor: "transparent",
+    width: '25%',
+    backgroundColor: 'transparent',
     borderRadius: 10,
   },
   textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   modalText: {
     marginBottom: 10,
-    textAlign: "center",
+    textAlign: 'center',
   },
   camera: {
     height: 400,
-    width: "90%",
+    width: '90%',
   },
   textonly: {
     top: 5,
   },
-});
+})
