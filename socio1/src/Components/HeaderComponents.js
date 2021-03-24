@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Avatar, ProgressBar, Colors } from 'react-native-paper'
-import { StatusBar } from 'expo-status-bar'
 import { useSelector } from 'react-redux'
 
 const Progress = ({ step, steps, height }) => {
@@ -39,7 +38,6 @@ export default function Header() {
         <Avatar.Image size={42} source={{ uri: user.photo }} />
       </View>
       <View style={styles.progressBar}>
-        {/* <Avatar.Text size={45} label="ProgressBar" /> */}
         <View style={styles.textLevel}>
           <Text>Exp {user?.currentExperience} / 10</Text>
         </View>
@@ -64,9 +62,7 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     height: '10%',
-    // alignItems: "start",
     flexDirection: 'row',
-    // justifyContent: "center",
     backgroundColor: 'transparent',
   },
   avatar: {

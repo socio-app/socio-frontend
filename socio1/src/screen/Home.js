@@ -1,31 +1,24 @@
 import React, { useCallback, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { StyleSheet, View, ImageBackground } from 'react-native'
-
+import { useFocusEffect } from '@react-navigation/native'
+import { dailyReset } from '../redux/actions/dailyReset.js'
+import { fetchUser } from '../redux/actions/fetchUser.js'
 import Headers from '../Components/HeaderComponents'
 import Boxes from '../Components/Boxes'
 import MyMission from '../Components/MyMission'
 import Congratulation from '../Components/Congratulation'
-
-import { useFocusEffect } from '@react-navigation/native'
-import { dailyReset } from '../redux/actions/dailyReset.js'
-
-import { fetchUser } from '../redux/actions/fetchUser.js'
-
 import LoadingPageComponent from '../Components/LoadingPageComponent'
 
 export default function Home(props) {
   const user = useSelector((state) => state.user.user)
   const isLoading = useSelector((state) => state.user.loadingUser)
   const access_token = useSelector((state) => state.user.access_token)
-
+  const [pageToShow, setPageToShow] = useState('')
+  const dispatch = useDispatch()
   const handleChangePage = (value) => {
     props.navigation.navigate(value)
   }
-
-  const [pageToShow, setPageToShow] = useState('')
-
-  const dispatch = useDispatch()
 
   useFocusEffect(
     useCallback(() => {
@@ -35,18 +28,13 @@ export default function Home(props) {
           numberOfFinishedActiveMissions = numberOfFinishedActiveMissions + 1
         }
       })
-      console.log(user?.activeMissions, '<<<<')
       if (numberOfFinishedActiveMissions === user.maxActiveMissions) {
-        console.log('munculi conrats')
         setPageToShow('Congratulation')
       } else if (user?.activeMissions?.length != 0) {
-        console.log('munculi MyMission')
         setPageToShow('MyMission')
       } else {
-        console.log('munculi Boxes')
         setPageToShow('Boxes')
       }
-      console.log(pageToShow, 'page to show')
     }, [user.activeMissions])
   )
 
@@ -56,7 +44,6 @@ export default function Home(props) {
       const currentDate = new Date().toLocaleDateString()
 
       if (lastOnline !== currentDate) {
-        console.log('dispatch daily reset')
         dispatch(
           dailyReset({
             _id: user._id,

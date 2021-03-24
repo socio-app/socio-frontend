@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from 'react'
-
 import {
   StyleSheet,
   View,
@@ -9,12 +8,13 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native'
-
+import { useSelector } from 'react-redux'
+import { useFocusEffect } from '@react-navigation/native'
 import ActionSignin from '../assets/actionSignIn'
 import ActionSignup from '../assets/actionSignUp'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { useSelector } from 'react-redux'
-import { useFocusEffect } from '@react-navigation/native'
+
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 export default function MainPage(props) {
   const [enableButton, setEnableButton] = useState(false)
@@ -71,13 +71,12 @@ export default function MainPage(props) {
             <View style={styles.box}>
               <TouchableOpacity
                 onPress={handleSignIn}
-                // onPress={() => this.tab("SignIn")}
                 style={[
                   styles.item,
                   {
                     backgroundColor: enableButton ? 'orange' : 'green',
-                    borderTopLeftRadius: width / 2 / 2,
-                    borderBottomLeftRadius: width / 2 / 2,
+                    borderTopLeftRadius: SCREEN_WIDTH / 2 / 2,
+                    borderBottomLeftRadius: SCREEN_WIDTH / 2 / 2,
                   },
                 ]}
               >
@@ -89,13 +88,12 @@ export default function MainPage(props) {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleSignUp}
-                // onPress={() => this.tab("SignUp")}
                 style={[
                   styles.item,
                   {
                     backgroundColor: enableButton ? 'green' : 'orange',
-                    borderTopRightRadius: width / 2 / 2,
-                    borderBottomRightRadius: width / 2 / 2,
+                    borderTopRightRadius: SCREEN_WIDTH / 2 / 2,
+                    borderBottomRightRadius: SCREEN_WIDTH / 2 / 2,
                   },
                 ]}
               >
@@ -121,8 +119,6 @@ export default function MainPage(props) {
     </View>
   )
 }
-
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {

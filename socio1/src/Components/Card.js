@@ -8,26 +8,19 @@ import {
   Alert,
   Button,
 } from 'react-native'
-import ceklis from '../assets/ceklis.png'
-
 import { useSelector, useDispatch } from 'react-redux'
 import { expIncrease } from '../redux/actions/expIncrease'
 import { levelUp } from '../redux/actions/levelUp'
 import { useFocusEffect } from '@react-navigation/core'
-import MissionDetail from '../Components/MissionDetail'
+import ceklis from '../assets/ceklis.png'
 
 const Card = (props) => {
   const dispatch = useDispatch()
   const [status, setStatus] = useState(true)
   const [statusMyMission, setMyMission] = useState(true)
-
   const user = useSelector((state) => state.user.user)
   const access_token = useSelector((state) => state.user.access_token)
-
   const imageUri = useSelector((state) => state.image.imageUri)
-
-  console.log(props.mission.isFinished, 'tanda mission props')
-  console.log(props.mission, '')
 
   useFocusEffect(
     useCallback(() => {
@@ -37,8 +30,6 @@ const Card = (props) => {
 
   useEffect(() => {
     if (props.type === 'Home') {
-      console.log(props.isPhotoSelected.isPhotoSelectedStatus)
-      console.log(props.isPhotoSelected.missionId)
       if (
         props.isPhotoSelected.isPhotoSelectedStatus &&
         props.isPhotoSelected.missionId === props.mission._id
@@ -60,8 +51,6 @@ const Card = (props) => {
   }
 
   const updateMissionCard = () => {
-    console.log('Going to finish mission')
-
     let tempActiveMissions = JSON.parse(JSON.stringify(user.activeMissions))
 
     tempActiveMissions.forEach((el) => {
@@ -70,10 +59,7 @@ const Card = (props) => {
       }
     })
 
-    console.log(imageUri, 'IMAGE URI FROM CARD')
-
     if (+user.currentExperience + +props.mission.experience < 10) {
-      console.log('dispatch expIncrease')
       dispatch(
         expIncrease({
           _id: user._id,
@@ -90,7 +76,6 @@ const Card = (props) => {
         })
       )
     } else {
-      console.log('dispatch levelUp')
       dispatch(
         levelUp({
           _id: user._id,
@@ -135,12 +120,10 @@ const Card = (props) => {
     )
 
   const handlePickMission = () => {
-    // props.handlePickMission(props.mission._id)
     if (props.type !== 'Home') {
       props.handlePickMission(props.mission._id, setStatus)
     }
   }
-  console.log(status, 'handle clcik')
 
   const handleDetail = () => {
     if (props.type != 'Home') {
@@ -152,12 +135,9 @@ const Card = (props) => {
   }
 
   const handleDetailHome = () => {
-    console.log('MASUUKK SINI BOUSSSSS Handle visible')
     props.setModalVisibleDetail(true)
     props.setModalMission(props.mission)
   }
-
-  console.log(props.modalVisibleDetail, 'ini modal visible detai doang')
 
   return (
     <>
@@ -172,7 +152,6 @@ const Card = (props) => {
           </View>
 
           <TouchableOpacity
-            // true -> false(bisa diclick) , true -> false (true)
             disabled={!statusMyMission || !status}
             onPress={handlePickMission}
           >
@@ -188,11 +167,7 @@ const Card = (props) => {
                   style={styles.buttonDetail2}
                   title="Detail"
                   onPress={handleDetailHome}
-                >
-                  <Text style={{ color: 'black', fontWeight: '800' }}>
-                    ajjdhaksjh
-                  </Text>
-                </Button>
+                ></Button>
               </View>
             )}
           </TouchableOpacity>

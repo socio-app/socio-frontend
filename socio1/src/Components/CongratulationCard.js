@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, StyleSheet, Text, Image, FlatList } from 'react-native'
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper'
+import { View, StyleSheet } from 'react-native'
+import { Button, Card, Title, Paragraph } from 'react-native-paper'
 import * as Sharing from 'expo-sharing'
 import * as FileSystem from 'expo-file-system'
 
@@ -25,7 +25,6 @@ const CardWithPhoto = (props) => {
     )
 
     const { uri } = await downloadResumable.downloadAsync()
-
     await Sharing.shareAsync(uri, { dialogTitle: props.data.title })
   }
 
@@ -48,8 +47,6 @@ const CardWithPhoto = (props) => {
           </Card.Actions>
         </View>
       </Card>
-
-      {}
     </View>
   )
 }

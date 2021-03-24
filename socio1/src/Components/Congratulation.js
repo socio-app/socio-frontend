@@ -1,18 +1,8 @@
 import React from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native'
-import { Button, Title } from 'react-native-paper'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { StyleSheet, View, FlatList } from 'react-native'
+import { useSelector } from 'react-redux'
+import { Card } from 'react-native-elements'
 import CardWithPhoto from './CongratulationCard'
-import { Card, ListItem, Icon } from 'react-native-elements'
 
 export default function Congratulation() {
   const user = useSelector((state) => state.user.user)
@@ -29,7 +19,6 @@ export default function Congratulation() {
           renderItem={(data) => (
             <View style={styles.inner}>
               <View style={styles.cardContainer}>
-                {/* <Text>{data.item.title}</Text> */}
                 <CardWithPhoto data={data.item} />
               </View>
             </View>

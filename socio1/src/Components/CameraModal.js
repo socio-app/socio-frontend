@@ -1,36 +1,20 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  Alert,
-  Modal,
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-  TouchableOpacity,
-  Image,
-} from 'react-native'
+import { Modal, StyleSheet, View, TouchableOpacity, Image } from 'react-native'
 import { Camera } from 'expo-camera'
-import axios from 'axios'
 import { setImage } from '../redux/actions/setImage'
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { useFocusEffect } from '@react-navigation/core'
 
 export default function CameraModal(props) {
   const dispatch = useDispatch()
-  const [imageUrlFromServer, setImageUrlFromServer] = useState('')
   const [imageUri, setImageUri] = useState('')
   const [type, setType] = useState(Camera.Constants.Type.back)
   const hasPermission = useSelector((state) => state.image.permission)
-
-  console.log(hasPermission)
-
   const camRef = useRef(null)
 
   useEffect(() => {
     ;(async () => {
       const { status } = await Camera.requestPermissionsAsync()
-
       dispatch({ type: 'SET_PERMISSION ', data: status === 'granted' })
     })()
 
@@ -46,7 +30,6 @@ export default function CameraModal(props) {
   const takePicture = async () => {
     if (camRef) {
       const data = await camRef.current.takePictureAsync({ quality: 0.3 })
-      console.log(data, 'ini image baru diambil')
       setImageUri(data.uri)
     }
   }
@@ -54,16 +37,11 @@ export default function CameraModal(props) {
   const uploadPicture = async () => {
     try {
       dispatch(setImage(imageUri))
-
-      console.log(imageUri, '>>> IMAGE URI DARI MODAL')
-
       setImageUri('')
-
       props.updateHandler()
-
       props.setModalVisible(false)
     } catch (err) {
-      console.log(err)
+      console.log(err, 'error source: CameraModal')
     }
   }
 
@@ -73,7 +51,6 @@ export default function CameraModal(props) {
       transparent={true}
       visible={props.modalVisible}
       onRequestClose={() => {
-        Alert.alert('Camera has been closed.')
         props.setModalVisible(false)
       }}
     >

@@ -1,25 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import {
   View,
   StyleSheet,
   Text,
-  Image,
-  TouchableOpacity,
-  Alert,
   Modal,
   Pressable,
   ScrollView,
-  SafeAreaView,
   StatusBar,
 } from 'react-native'
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper'
+import { Card, Title } from 'react-native-paper'
 
 export default function MissionDetail(props) {
-  // const [modalVisible, setModalVisible] = useState(false);
-  console.log(props.modalVisibleDetail, '<<<< INI MODAL VISIBLE DETAIL')
-  useEffect(() => {
-    console.log(props.mission, '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>updated')
-  }, [props.mission])
+  useEffect(() => {}, [props.mission])
   return (
     <>
       <View style={styles.centeredView}>
@@ -45,11 +37,9 @@ export default function MissionDetail(props) {
               <Card style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                   <Card.Content style={{ alignItems: 'center' }}>
-                    {/* <SafeAreaView style={styles.Paragraph}> */}
                     <Text>
                       {props.mission ? props.mission.description : null}
                     </Text>
-                    {/* </SafeAreaView> */}
                   </Card.Content>
                 </ScrollView>
               </Card>
@@ -64,12 +54,6 @@ export default function MissionDetail(props) {
             </View>
           </View>
         </Modal>
-        {/* <Pressable
-          style={[styles.button, styles.buttonOpen]}
-          onPress={() => props.setModalVisible(true)}
-        >
-          <Text style={styles.textStyle}>Show Modal</Text>
-        </Pressable> */}
       </View>
     </>
   )

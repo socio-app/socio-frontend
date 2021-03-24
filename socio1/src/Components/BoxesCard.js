@@ -1,31 +1,21 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native'
-import { Button, Title, Paragraph, Checkbox } from 'react-native-paper'
-import Card from './Card.js'
-
+import React, { useState, useCallback } from 'react'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { Button, Title } from 'react-native-paper'
 import { useDispatch, useSelector } from 'react-redux'
 import { pickMission } from '../redux/actions/missionUpdate.js'
-
 import { useFocusEffect } from '@react-navigation/native'
+import Card from './Card.js'
 
 const Boxes = (props) => {
   const user = useSelector((state) => state.user.user)
   const access_token = useSelector((state) => state.user.access_token)
   const [userLocal, setUserLocal] = useState({})
   const dispatch = useDispatch()
-  const [flag, setFlag] = useState(false)
-
-  // useEffect(() => {
-  //   setUserLocal({ ...user })
-  // }, [user])
 
   useFocusEffect(
     useCallback(() => {
-      // Do something when the screen is focused
       setUserLocal(JSON.parse(JSON.stringify(user)))
       return () => {
-        // Do something when the screen is unfocused
-        // Useful for cleanup functions
         setUserLocal({})
       }
     }, [user])
@@ -45,7 +35,6 @@ const Boxes = (props) => {
       access_token,
     }
     dispatch(pickMission(payload))
-
     props.handleChangePage('Home')
   }
 
@@ -84,10 +73,6 @@ const Boxes = (props) => {
             List Mission ( {userLocal.activeMissions.length}/
             {userLocal.maxActiveMissions} )
           </Title>
-          {/* <Title style={{ marginTop: 20 }}>
-            Max : {userLocal.activeMissions.length}/
-            {userLocal.maxActiveMissions}
-          </Title> */}
           <View style={styles.box}>
             <FlatList
               data={userLocal.missionPool}

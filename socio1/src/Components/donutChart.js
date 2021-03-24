@@ -1,62 +1,40 @@
 import React, { useState, useRef, useCallback } from 'react'
 import {
   StyleSheet,
-  Easing,
-  Text,
   TextInput,
   View,
-  StatusBar,
-  ImageBackground,
-  Image,
   Dimensions,
-  TouchableOpacity,
   PixelRatio,
   Platform,
-  Animated,
-  style,
   TouchableWithoutFeedback,
 } from 'react-native'
-import Svg, { G, Circle, Rect } from 'react-native-svg'
-import { useEffect } from 'react'
-import { Button, Card, Title, Paragraph } from 'react-native-paper'
+import Svg, { G, Circle } from 'react-native-svg'
+import { Title } from 'react-native-paper'
+import { useSelector } from 'react-redux'
+import { useFocusEffect } from '@react-navigation/core'
 import * as Animatable from 'react-native-animatable'
 
-import Header from './HeaderComponents'
-import { useDispatch, useSelector } from 'react-redux'
-import { useFocusEffect } from '@react-navigation/core'
+const { width: SCREEN_WIDTH } = Dimensions.get('window')
+const scale = SCREEN_WIDTH / 320
 
 export default function Donut({
-  percentage = 75,
   radius = 90,
   strokeWidth = 40,
-  duration = 500,
   color = 'tomato',
-  delay = 500,
-  textColor,
-  max = 100,
 }) {
   const inputRef = React.useRef()
   const halfCircle = radius + strokeWidth
   const circleCircumference = 2 * Math.PI * radius
   const user = useSelector((state) => state.user.user)
   const [persentase, setPersentase] = useState(0)
-  const [totalMission, setTotalMission] = useState(0)
-  const dispatch = useDispatch()
 
   useFocusEffect(
     useCallback(() => {
-      console.log(
-        user?.statistic?.totalSuccessMissions,
-        user?.statistic?.totalMissions,
-        'hasil itung'
-      )
       setPersentase(
         user?.statistic?.totalSuccessMissions / user?.statistic?.totalMissions
       )
-      // setTotalMission(user?.statistic?.totalMissions)
     }, [user.statistic])
   )
-  console.log(persentase, 'setelah usefocuseffect')
 
   let lastTime = new Date(user?.lastOnline).getTime()
   let firstTime = new Date(user?.createdAt).getTime()
@@ -123,20 +101,6 @@ export default function Donut({
           </View>
         </Animatable.View>
       </TouchableWithoutFeedback>
-
-      {/* <View style={styles.viewcard1}>
-        <Card style={styles.card2}>
-          <Animatable.View animation="bounceInLeft">
-            <Title style={styles.cardTitle}>Total Played Days: {Math.floor((lastTime - firstTime) / (1000 * 60 * 60 * 24)) + 1} days </Title>
-          </Animatable.View>
-        </Card>
-      </View>
-
-      <View style={styles.viewcard2}>
-        <Card style={styles.card2}>
-          <Title style={styles.cardTitle}>Total Mission: {user?.statistic?.totalMissions}  </Title>
-        </Card>
-      </View> */}
       <View>
         <Title style={styles.cardTitle}>
           Total Played Days :{' '}
@@ -151,11 +115,6 @@ export default function Donut({
     </View>
   )
 }
-
-const { width } = Dimensions.get('window')
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
-
-const scale = SCREEN_WIDTH / 320
 
 export function normalize(size) {
   const newSize = size * scale
@@ -193,7 +152,6 @@ const styles = StyleSheet.create({
   },
   chart: {
     position: 'absolute',
-
     top: 0,
   },
   card1: {
