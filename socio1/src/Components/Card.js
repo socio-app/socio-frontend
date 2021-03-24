@@ -157,7 +157,7 @@ const Card = (props) => {
   return (
     <>
       <TouchableOpacity
-        style={styles.container}
+        style={styles.container1}
         onPress={handleDetail}
         disabled={!statusMyMission}
       >
@@ -208,6 +208,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 10,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    elevation: 4,
   },
   container1: {
     shadowOffset: { width: 0, height: 1 },
@@ -233,7 +237,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonDetail: {
-    right: 20,
+    right: 35,
 
     color: 'black',
   },

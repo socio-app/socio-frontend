@@ -50,7 +50,11 @@ export default function Header() {
         />
       </View>
       <View style={styles.level}>
-        <Avatar.Text size={42} label={user?.level} style={{ backgroundColor: "#dddddd" }} />
+        <Avatar.Text
+          size={42}
+          label={user?.level}
+          style={{ backgroundColor: '#dddddd' }}
+        />
       </View>
     </View>
   )
@@ -63,11 +67,11 @@ const styles = StyleSheet.create({
     // alignItems: "start",
     flexDirection: 'row',
     // justifyContent: "center",
-    backgroundColor: '#eee',
+    backgroundColor: 'transparent',
   },
   avatar: {
     justifyContent: 'center',
-    left: 15
+    left: 15,
   },
   level: {
     justifyContent: 'center',
@@ -87,6 +91,6 @@ const styles = StyleSheet.create({
   },
   textLevel: {
     paddingBottom: 5,
-    left: "50%"
+    left: '50%',
   },
 })

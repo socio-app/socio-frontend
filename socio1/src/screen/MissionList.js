@@ -27,7 +27,7 @@ export default function MissionList(props) {
         setModalVisibleDetail={setModalVisibleDetail}
       />
       <ImageBackground
-        source={require('../../src/assets/backgroundburung.png')}
+        source={require('../../src/assets/sociobackgroundtester.jpg')}
         style={{ width: '100%', height: '100%' }}
         resizeMode={'stretch'}
       >

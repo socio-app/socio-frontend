@@ -73,7 +73,7 @@ export default function CameraModal(props) {
       transparent={true}
       visible={props.modalVisible}
       onRequestClose={() => {
-        Alert.alert('Modal has been closed.')
+        Alert.alert('Camera has been closed.')
         props.setModalVisible(false)
       }}
     >
@@ -104,7 +104,7 @@ export default function CameraModal(props) {
               style={styles.takePictureButton}
               onPress={takePicture}
             >
-              <MaterialIcons name="camera-iris" color="black" size={50} />
+              <MaterialIcons name="camera-iris" color="black" size={45} />
             </TouchableOpacity>
           </View>
         ) : (
@@ -140,7 +140,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    marginTop: 5,
+    marginBottom: 25,
   },
   modalView: {
     margin: 20,
@@ -184,6 +185,11 @@ const styles = StyleSheet.create({
     top: 10,
     width: '25%',
     borderRadius: 10,
+    backgroundColor: '#d0ebf0',
+    alignItems: 'center',
+    borderRadius: 10,
+    borderWidth: 3,
+    bottom: 6,
   },
   textStyle: {
     color: 'white',
