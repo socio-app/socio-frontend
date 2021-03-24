@@ -141,6 +141,7 @@ const Card = (props) => {
 
   const handleDetail = () => {
     if (props.type != 'Home') {
+      props.setModalMission(props.mission)
       props.setModalVisibleDetail(true)
     } else {
       showAlert()
@@ -150,6 +151,7 @@ const Card = (props) => {
   const handleDetailHome = () => {
     console.log('MASUUKK SINI BOUSSSSS Handle visible')
     props.setModalVisibleDetail(true)
+    props.setModalMission(props.mission)
   }
 
   console.log(props.modalVisibleDetail, 'ini modal visible detai doang')

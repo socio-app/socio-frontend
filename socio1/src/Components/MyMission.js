@@ -18,6 +18,7 @@ export default function MyMission(props) {
   const user = useSelector((state) => state.user.user)
   const [modalVisible, setModalVisible] = useState(false)
   const [modalVisibleDetail, setModalVisibleDetail] = useState(false)
+  const [modalMission, setModalMission] = useState(null)
 
   let updateHandler = () => {
     setIsPhotoSelected({
@@ -46,6 +47,7 @@ export default function MyMission(props) {
       <MissionDetail
         modalVisibleDetail={modalVisibleDetail}
         setModalVisibleDetail={setModalVisibleDetail}
+        mission={modalMission}
       />
       <View style={styles.title}>
         <Title>Your Mission</Title>
@@ -63,6 +65,8 @@ export default function MyMission(props) {
                 setModalVisibleDetail={setModalVisibleDetail}
                 isPhotoSelected={isPhotoSelected}
                 setIsPhotoSelected={setIsPhotoSelected}
+                setModalMission={setModalMission}
+                modalMission={modalMission}
                 type="Home"
               />
             </View>

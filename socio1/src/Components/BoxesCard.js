@@ -100,6 +100,8 @@ const Boxes = (props) => {
                     modalVisibleDetail={props.modalVisibleDetail}
                     setModalVisibleDetail={props.setModalVisibleDetail}
                     type="MissionList"
+                    modalMission={props.modalMission}
+                    setModalMission={props.setModalMission}
                   />
                 </View>
               )}
