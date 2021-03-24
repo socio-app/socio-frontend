@@ -12,7 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import CardWithPhoto from './CongratulationCard'
-import { Card, ListItem, Icon } from "react-native-elements";
+import { Card, ListItem, Icon } from 'react-native-elements'
 
 export default function Congratulation() {
   const user = useSelector((state) => state.user.user)
@@ -30,7 +30,7 @@ export default function Congratulation() {
             <View style={styles.inner}>
               <View style={styles.cardContainer}>
                 {/* <Text>{data.item.title}</Text> */}
-                <CardWithPhoto data={data.item}/>
+                <CardWithPhoto data={data.item} />
               </View>
             </View>
           )}
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: '#374045',
+    backgroundColor: '#c3c3c3',
     marginVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 10,

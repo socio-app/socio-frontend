@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from 'react'
 import {
   View,
   StyleSheet,
@@ -11,12 +11,12 @@ import {
   ScrollView,
   SafeAreaView,
   StatusBar,
-} from "react-native";
-import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
+} from 'react-native'
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper'
 
 export default function MissionDetail(props) {
   // const [modalVisible, setModalVisible] = useState(false);
-  console.log(props.modalVisibleDetail, "<<<< INI MODAL VISIBLE DETAIL");
+  console.log(props.modalVisibleDetail, '<<<< INI MODAL VISIBLE DETAIL')
   return (
     <>
       <View style={styles.centeredView}>
@@ -25,8 +25,8 @@ export default function MissionDetail(props) {
           transparent={true}
           visible={props.modalVisibleDetail}
           onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            props.setModalVisibleDetail(!props.modalVisibleDetail);
+            Alert.alert('Modal has been closed.')
+            props.setModalVisibleDetail(!props.modalVisibleDetail)
           }}
         >
           <View style={styles.centeredView}>
@@ -38,14 +38,14 @@ export default function MissionDetail(props) {
               <Text>EXP: 5</Text>
               <Card style={styles.container}>
                 <ScrollView style={styles.scrollView}>
-                  <Card.Content style={{ alignItems: "center" }}>
+                  <Card.Content style={{ alignItems: 'center' }}>
                     {/* <SafeAreaView style={styles.Paragraph}> */}
                     <Text>
                       Disini bukan untuk mengungkit masa lalu tetapi memperbaiki
                       segala kesalahan yang pernah kamu lakukan tetapi kamu
                       belum pernah meminta maaf sebelumnya, telpon mantanmu,
                       orang tua mu, sahabat mu atau teman mu tanyakan kabr dan
-                      minta maaf untuk kesalahan yg pernah kamu lakukan{" "}
+                      minta maaf untuk kesalahan yg pernah kamu lakukan{' '}
                     </Text>
                     {/* </SafeAreaView> */}
                   </Card.Content>
@@ -70,23 +70,22 @@ export default function MissionDetail(props) {
         </Pressable> */}
       </View>
     </>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
+    alignItems: 'center',
+    shadowColor: '#000',
+    top: 60,
 
     shadowOffset: {
       width: 0,
@@ -95,6 +94,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    backgroundColor: '#e1e2f1',
   },
   button: {
     borderRadius: 20,
@@ -102,35 +102,36 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    backgroundColor: '#F194FF',
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: '#90e388',
   },
   textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center",
+    textAlign: 'center',
   },
   container: {
-    width: "100%",
+    width: '100%',
     minHeight: 80,
-    justifyContent: "space-between",
-    alignItems: "center",
-    flexDirection: "row",
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
     marginVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 10,
-    backgroundColor: "#dddddd",
+    backgroundColor: '#dddddd',
   },
   scrollView: {
-    backgroundColor: "pink",
+    backgroundColor: 'pink',
+    width: '100%',
   },
   Paragraph: {
     paddingTop: StatusBar.currentHeight,
   },
-});
+})

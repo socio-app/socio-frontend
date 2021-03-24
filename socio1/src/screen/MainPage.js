@@ -70,6 +70,7 @@ export default function MainPage(props) {
                 width: "100%",
                 height: "100%",
                 alignItems: "center",
+                left: 13,
               }}
               resizeMode={"stretch"}
             />

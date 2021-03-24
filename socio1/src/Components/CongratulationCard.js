@@ -9,7 +9,10 @@ const CardWithPhoto = (props) => {
         <Card.Content style={{ alignItems: 'center' }}>
           <Title style={styles.Title}>{props.data.title}</Title>
           <View style={{ alignItems: 'center' }}>
-            <Paragraph>Deksripsi: ......</Paragraph>
+            <Paragraph>
+              Deksripsi:
+              dsaihfjlkasdflkasdklcnmlkasndclkansdlkcnlaksdnclkdsnclkansdlkcnasdlkcnasldkncalks
+            </Paragraph>
           </View>
         </Card.Content>
         <Card.Cover
@@ -37,7 +40,12 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 10,
-    backgroundColor: '#dddddd',
+    backgroundColor: '#e1e2f1',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
+    elevation: 4,
+    shadowColor: 'white',
   },
   checkbox: {
     borderWidth: 1,
