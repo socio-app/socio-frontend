@@ -1,5 +1,5 @@
-import axios from '../../axios/axios.js'
 import { setLoadingUser } from '../actions/setLoadingUser'
+import axios from '../../axios/axios.js'
 
 export const login = (payload) => async (dispatch) => {
   try {
@@ -17,7 +17,7 @@ export const login = (payload) => async (dispatch) => {
     dispatch({ type: 'FETCH_USER', data: dataAuth.data.user })
     dispatch(setLoadingUser(false))
   } catch (err) {
-    console.log(err, 'ErR0r')
+    console.log(err, 'error source: login')
     dispatch(setLoadingUser(false))
   }
 }

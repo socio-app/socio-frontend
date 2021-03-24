@@ -1,5 +1,5 @@
-import axios from '../../axios/axios.js'
 import { setLoadingUser } from '../actions/setLoadingUser'
+import axios from '../../axios/axios.js'
 
 export const pickMission = (payload) => async (dispatch) => {
   try {
@@ -17,7 +17,7 @@ export const pickMission = (payload) => async (dispatch) => {
     dispatch({ type: 'FETCH_USER', data: newUser.data })
     dispatch(setLoadingUser(false))
   } catch (err) {
-    console.log(err)
+    console.log(err, 'error source: missionUpdate')
     dispatch(setLoadingUser(false))
   }
 }

@@ -1,5 +1,5 @@
-import axios from '../../axios/axios.js'
 import { setLoadingUser } from '../actions/setLoadingUser'
+import axios from '../../axios/axios.js'
 
 export const dailyReset = (payload) => async (dispatch) => {
   try {
@@ -12,7 +12,7 @@ export const dailyReset = (payload) => async (dispatch) => {
     dispatch({ type: 'FETCH_USER', data: resetUser.data.user })
     dispatch(setLoadingUser(false))
   } catch (err) {
-    console.log(err)
+    console.log(err, 'error source: dailyReset')
     dispatch(setLoadingUser(false))
   }
 }

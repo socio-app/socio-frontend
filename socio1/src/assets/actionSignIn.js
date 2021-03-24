@@ -1,29 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/actions/login.js";
-
+import React, { useState, useEffect } from 'react'
 import {
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-} from "react-native";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import * as Animatable from "react-native-animatable";
+} from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../redux/actions/login.js'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import * as Animatable from 'react-native-animatable'
 
 export default function ActionSignin(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const access_token = useSelector((state) => state.user.access_token);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const access_token = useSelector((state) => state.user.access_token)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (access_token) {
-      props.handleChangePage("Home");
+      props.handleChangePage('Home')
     }
-  }, [access_token]);
+  }, [access_token])
 
   const handleSubmit = () => {
     dispatch(
@@ -31,11 +30,11 @@ export default function ActionSignin(props) {
         email,
         password,
       })
-    );
-  };
+    )
+  }
 
   return (
-    <View style={{ alignItems: "center" }}>
+    <View style={{ alignItems: 'center' }}>
       <Animatable.View animation="bounceInLeft" style={styles.container}>
         <View style={styles.section}>
           <View style={styles.icon}>
@@ -76,25 +75,25 @@ export default function ActionSignin(props) {
         </TouchableOpacity>
       </Animatable.View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: "10%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '10%',
     paddingHorizontal: 20,
-    width: "90%",
+    width: '90%',
   },
   section: {
-    flexDirection: "row",
-    backgroundColor: "white",
-    width: "100%",
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    width: '100%',
     borderRadius: 7,
     opacity: 0.9,
-    position: "relative",
-    shadowColor: "black",
+    position: 'relative',
+    shadowColor: 'black',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
@@ -102,47 +101,43 @@ const styles = StyleSheet.create({
   },
   icon: {
     borderRightWidth: 1,
-    borderRightColor: "gray",
+    borderRightColor: 'gray',
     paddingRight: 10,
-    position: "absolute",
-    top: "50%",
+    position: 'absolute',
+    top: '50%',
     transform: [{ translateY: -10 }],
     left: 10,
   },
-
   input: {
-    width: "100%",
+    width: '100%',
   },
-
   TextInput: {
     borderRadius: 7,
     paddingLeft: 50,
     paddingVertical: 15,
     paddingRight: 8,
-    width: "100%",
+    width: '100%',
   },
-
   button: {
     marginTop: 15,
-    alignItems: "center",
-    backgroundColor: "green",
+    alignItems: 'center',
+    backgroundColor: 'green',
     borderWidth: 1,
-    borderColor: "white",
+    borderColor: 'white',
     borderRadius: 7,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
     height: 44,
-    shadowColor: "black",
+    shadowColor: 'black',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 5,
   },
-
   text: {
-    color: "white",
-    fontWeight: "bold",
+    color: 'white',
+    fontWeight: 'bold',
     fontSize: 18,
   },
-});
+})

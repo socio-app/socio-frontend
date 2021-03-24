@@ -1,18 +1,13 @@
 import React, { useState } from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  FlatList,
-  Dimensions,
-} from 'react-native'
+import { StyleSheet, View, FlatList, Dimensions } from 'react-native'
 import { Button, Title } from 'react-native-paper'
+import { useSelector } from 'react-redux'
 import Card from './Card'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { useDispatch, useSelector } from 'react-redux'
 import CameraModal from './CameraModal'
 import MissionDetail from './MissionDetail'
+
+const { width } = Dimensions.get('window')
 
 export default function MyMission(props) {
   const user = useSelector((state) => state.user.user)
@@ -27,9 +22,7 @@ export default function MyMission(props) {
     })
   }
 
-  const handlePickMission = (_id) => {
-    console.log(_id, 'dari Home')
-  }
+  const handlePickMission = (_id) => {}
 
   const [isPhotoSelected, setIsPhotoSelected] = useState({
     isPhotoSelectedStatus: false,
@@ -88,8 +81,6 @@ export default function MyMission(props) {
     </View>
   )
 }
-
-const { width } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {

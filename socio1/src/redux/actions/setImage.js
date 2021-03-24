@@ -5,7 +5,7 @@ export const setImage = (payload) => async (dispatch) => {
     dispatch({ type: 'SET_IMAGE', data: payload })
     dispatch(setLoadingUser(false))
   } catch (err) {
-    console.log('err')
+    console.log(err, 'error source: setImage')
     dispatch(setLoadingUser(false))
   }
 }

@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
-import thunk from 'redux-thunk'
 import { userReducer } from '../reducers/userReducer.js'
 import { imageReducer } from '../reducers/imageReducer'
+import thunk from 'redux-thunk'
 
 const rootReducer = combineReducers({
   user: userReducer,
