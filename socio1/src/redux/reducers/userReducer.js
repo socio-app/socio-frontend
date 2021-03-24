@@ -2,6 +2,7 @@ const initialState = {
   user: {},
   access_token: '',
   setExpIncrease: {},
+  loadingUser: false,
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -15,6 +16,13 @@ export const userReducer = (state = initialState, action) => {
     return {
       ...state,
       access_token: action.data,
+    }
+  }
+
+  if (action.type === 'SET_LOADING_USER') {
+    return {
+      ...state,
+      loadingUser: action.data,
     }
   }
 

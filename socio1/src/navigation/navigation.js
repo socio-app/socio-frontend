@@ -29,7 +29,7 @@ function HomeHandling() {
         name="MissionList"
         component={MissionList}
         options={{
-          tabBarLabel: 'MissionList',
+          tabBarLabel: 'Mission List',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="format-list-checkbox"
@@ -54,7 +54,7 @@ function HomeHandling() {
         name="UserStats"
         component={UserStats}
         options={{
-          tabBarLabel: 'UserStats',
+          tabBarLabel: 'User Stats',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="stats-chart" color={color} size={size} />
           ),

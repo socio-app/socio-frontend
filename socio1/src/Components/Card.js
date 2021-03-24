@@ -120,15 +120,19 @@ const Card = (props) => {
   }
 
   const showAlert = () =>
-    Alert.alert('Confirmation on your Mission', 'Sudah selesaikah ?', [
-      {
-        text: 'Cancel',
-      },
-      {
-        text: 'Ok',
-        onPress: () => updateMission(),
-      },
-    ])
+    Alert.alert(
+      'Confirmation on your mission',
+      'Have you finished this mission ?',
+      [
+        {
+          text: 'Cancel',
+        },
+        {
+          text: 'Ok',
+          onPress: () => updateMission(),
+        },
+      ]
+    )
 
   const handlePickMission = () => {
     // props.handlePickMission(props.mission._id)
