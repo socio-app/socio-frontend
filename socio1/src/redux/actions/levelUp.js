@@ -1,7 +1,9 @@
 import axios from '../../axios/axios.js'
+import { setLoadingUser } from '../actions/setLoadingUser'
 
 export const levelUp = (payload) => async (dispatch) => {
   try {
+    dispatch(setLoadingUser(true))
     let formData = new FormData()
 
     formData.append('newImage', {
@@ -37,8 +39,11 @@ export const levelUp = (payload) => async (dispatch) => {
     })
 
     console.log(resetUser.data.user)
+    alert(`Congratulation u levelled up`)
     dispatch({ type: 'FETCH_USER', data: resetUser.data.user })
+    dispatch(setLoadingUser(false))
   } catch (err) {
     console.log(err)
+    dispatch(setLoadingUser(false))
   }
 }

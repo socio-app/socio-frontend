@@ -28,7 +28,6 @@ export default function MissionDetail(props) {
           transparent={true}
           visible={props.modalVisibleDetail}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.')
             props.setModalVisibleDetail(!props.modalVisibleDetail)
           }}
         >

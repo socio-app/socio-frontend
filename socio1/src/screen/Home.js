@@ -1,17 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-  ImageBackground,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-  PixelRatio,
-  Platform,
-} from 'react-native'
+import { StyleSheet, View, ImageBackground } from 'react-native'
 
 import Headers from '../Components/HeaderComponents'
 import Boxes from '../Components/Boxes'
@@ -23,8 +12,11 @@ import { dailyReset } from '../redux/actions/dailyReset.js'
 
 import { fetchUser } from '../redux/actions/fetchUser.js'
 
+import LoadingPageComponent from '../Components/LoadingPageComponent'
+
 export default function Home(props) {
   const user = useSelector((state) => state.user.user)
+  const isLoading = useSelector((state) => state.user.loadingUser)
   const access_token = useSelector((state) => state.user.access_token)
 
   const handleChangePage = (value) => {
@@ -60,7 +52,6 @@ export default function Home(props) {
 
   useFocusEffect(
     useCallback(() => {
-      // Do something when the screen is focused
       const lastOnline = new Date(user.lastOnline).toLocaleDateString()
       const currentDate = new Date().toLocaleDateString()
 
@@ -104,18 +95,17 @@ export default function Home(props) {
           <Boxes handleChangePage={(value) => handleChangePage(value)}></Boxes>
         )}
       </ImageBackground>
+      <LoadingPageComponent isLoading={isLoading} />
     </View>
   )
 }
-
-const { width } = Dimensions.get('window')
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     flexDirection: 'column',
+    position: 'relative',
   },
   button: {
     backgroundColor: 'blue',

@@ -10,12 +10,15 @@ import { dailyReset } from '../redux/actions/dailyReset.js'
 import MissionDetail from '../Components/MissionDetail'
 import * as Animatable from 'react-native-animatable'
 
+import LoadingPageComponent from '../Components/LoadingPageComponent'
+
 export default function MissionList(props) {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user.user)
   const access_token = useSelector((state) => state.user.access_token)
   const [modalVisibleDetail, setModalVisibleDetail] = useState(false)
   const [modalMission, setModalMission] = useState(null)
+  const isLoading = useSelector((state) => state.user.loadingUser)
 
   const handleChangePage = (value) => {
     props.navigation.navigate(value)
@@ -43,6 +46,7 @@ export default function MissionList(props) {
           user={user}
         />
       </ImageBackground>
+      <LoadingPageComponent isLoading={isLoading} />
     </View>
   )
 }
@@ -52,5 +56,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     flexDirection: 'column',
+    position: 'relative',
   },
 })
