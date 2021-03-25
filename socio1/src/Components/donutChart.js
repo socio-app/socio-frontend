@@ -104,12 +104,16 @@ export default function Donut({
       <View>
         <Title style={styles.cardTitle}>
           Total Played Days :{' '}
-          {Math.floor((lastTime - firstTime) / (1000 * 60 * 60 * 24)) + 1} days{' '}
+          {typeof Math.floor((lastTime - firstTime) / (1000 * 60 * 60 * 24)) ===
+          'number'
+            ? (lastTime - firstTime) / (1000 * 60 * 60 * 24) + 1
+            : 1}{' '}
+          days{' '}
         </Title>
       </View>
       <View>
         <Title style={styles.cardTitle}>
-          Total Mission : {user?.statistic?.totalMissions}{' '}
+          Total Mission : {user ? user?.statistic?.totalMissions : 0}{' '}
         </Title>
       </View>
     </View>
